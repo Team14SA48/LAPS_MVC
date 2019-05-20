@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="BIG5">
+<title>Leave Requests</title>
+</head>
+<body>
+	<h1>Leave Requests</h1>
+	<table>
+		<tr>
+			<td>id</td>
+			<td>employee</td>
+			<td>leaveCategory</td>
+			<td>status</td>
+			<td>leaveStartDate</td>
+			<td>leaveEndDat</td>
+			<td>leaveDays</td>
+			<td>submitDate</td>
+			<td>Detail</td>
+
+		</tr>
+		<tr th:each="LeaveHistory : ${LeaveRequestList}">
+			<td th:text="${LeaveHistory.id}">id</td>
+			<td th:text="${LeaveHistory.employee.name}">employee</td>
+			<td th:text="${LeaveHistory.leaveCategory.leaveCategory}">leaveCategory</td>
+			<td th:text="${LeaveHistory.status}">status</td>
+			<td th:text="${LeaveHistory.leaveStartDate}">leaveStartDate</td>
+			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
+			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
+			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
+			<td><a th:href="${'LeaveRequestDetail?id=' + LeaveHistory.id}">Detail</a></td>
+
+		</tr>
+	</table>
+</body>
+</html>

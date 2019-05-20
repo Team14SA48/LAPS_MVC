@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="BIG5">
+<title>LeaveRequestDetail</title>
+</head>
+<body>
+	<h1>Leave Request Detail</h1>
+
+	<table>
+		<tr>
+			<td>id</td>
+			<td>employee</td>
+			<td>leaveCategory</td>
+			<td>status</td>
+			<td>leaveStartDate</td>
+			<td>leaveEndDate</td>
+			<td>leaveDays</td>
+			<td>submitDate</td>
+
+		</tr>
+		<tr>
+			<td th:text="${LeaveHistory.id}">id</td>
+			<td th:text="${LeaveHistory.employee.name}">employee</td>
+			<td th:text="${LeaveHistory.leaveCategory.leaveCategory}">leaveCategory</td>
+			<td th:text="${LeaveHistory.status}">status</td>
+			<td th:text="${LeaveHistory.leaveStartDate}">leaveStartDate</td>
+			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
+			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
+			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
+		</tr>
+	</table>
+<h2>Details</h2>
+	<table>
+		<tr>
+			<td>Additional Reason</td>
+			<td th:text="${LeaveHistory.additionalReasons}">Additional Reason</td>
+		</tr>
+		<tr>
+			<td>Work Dissemination</td>
+			<td th:text="${LeaveHistory.workDissemination}">Work Dissemination</td>
+		</tr>
+		<tr>
+			<td>Contract Detail</td>
+			<td th:text="${LeaveHistory.contractDetail}">Contract Detail</td>
+		</tr>
+		<tr>
+
+
+
+		</tr>
+	</table>
+
+</body>
+</html>
