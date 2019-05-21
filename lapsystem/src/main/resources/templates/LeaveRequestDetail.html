@@ -6,6 +6,9 @@
 </head>
 <body>
 	<h1>Leave Request Detail</h1>
+	
+	<p>User ID</p>
+	<p th:text="${user}"></p>
 
 	<table>
 		<tr>
@@ -30,26 +33,36 @@
 			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
 		</tr>
 	</table>
-<h2>Details</h2>
+	<h2>Details</h2>
 	<table>
 		<tr>
 			<td>Additional Reason</td>
-			<td th:text="${LeaveHistory.additionalReasons}">Additional Reason</td>
+			<td th:text="${LeaveHistory.additionalReasons}">Additional
+				Reason</td>
 		</tr>
 		<tr>
 			<td>Work Dissemination</td>
-			<td th:text="${LeaveHistory.workDissemination}">Work Dissemination</td>
+			<td th:text="${LeaveHistory.workDissemination}">Work
+				Dissemination</td>
 		</tr>
 		<tr>
 			<td>Contract Detail</td>
 			<td th:text="${LeaveHistory.contractDetail}">Contract Detail</td>
 		</tr>
-		<tr>
-
-
-
-		</tr>
 	</table>
+
+	<p>
+		<a
+			th:href="${'ApproveOrReject?id=' + LeaveHistory.id + '&approveOrNot=true&rejectReason='}">Approve</a>
+	</p>
+
+	<form action="#"
+		th:action="${'ApproveOrReject?id=' + LeaveHistory.id + '&approveOrNot=false'}"
+		th:object="${LeaveHistory}" method="post">
+		<textarea id="rejectReason" name="rejectReason"
+			th:field="*{rejectReason}"></textarea>
+		<button type="submit">Reject</button>
+	</form>
 
 </body>
 </html>
