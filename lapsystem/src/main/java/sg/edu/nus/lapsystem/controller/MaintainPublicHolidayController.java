@@ -27,25 +27,14 @@ public class MaintainPublicHolidayController {
     @RequestMapping(path = "/publicholidays/create", method = RequestMethod.GET)
     public String createPublicHoliday(Model model) {
         model.addAttribute("publicholiday", new PublicHoliday());
-        return "createpb";
+        return "editpb";
     }
-    @RequestMapping(path = "createpublicholidays", method = RequestMethod.POST)
+    @RequestMapping(path = "publicholidays", method = RequestMethod.POST)
     public String savePulicHoliday(PublicHoliday publicholiday) {
     	PBrepository.save(publicholiday);
     	return "redirect:/publicholidays";
     }
-    @RequestMapping(path = "publicholidays", method = RequestMethod.POST)
-    public String savePulicHolidayWhenEdit(PublicHoliday publicholiday) {
-		System.out.println(this.LD.toString());
-    	if(publicholiday.getDate()==this.LD) {
 
-    		PBrepository.save(publicholiday);
-        	return "redirect:/publicholidays";
-    	}else {
-            return "index";
-    	}
-    	
-    }
     @RequestMapping(path = "/publicholidays", method = RequestMethod.GET)
     public String getallPublicHoliday(Model model) {
     	model.addAttribute("publicholidays", PBrepository.findAll());
