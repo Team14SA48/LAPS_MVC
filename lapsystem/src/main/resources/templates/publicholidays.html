@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>PublicHolidays</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+<div class="row">
+		<div class="col-md-12">
+			<h1> PublicHolidays List </h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table">
+				<thead>
+					<tr>
+		                <th>PublicHoliday Date</th>
+		                <th>PublicHoliday Name</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="publicholiday : ${publicholidays}">
+		                <td th:text="${publicholiday.date}">PublicHoliday Date</td>
+		                <td th:text="${publicholiday.holidayName}">PublicHoliday Name</td>
+		                
+		                <td><a th:href="${'/publicholidays/editpb/' + publicholiday.date}" class="btn btn-default">Edit</a></td>
+		                <td><a th:href="${'/publicholidays/delete/' + publicholiday.date}" class="btn btn-danger">Delete</a></td>
+		            </tr>
+				</tbody>
+    
+            
+        	</table>
+    	</div>
+    	</div>
+</div>
+</body>
+</html>
