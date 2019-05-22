@@ -1,6 +1,8 @@
 package sg.edu.nus.lapsystem.load;
 
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,7 @@ import sg.edu.nus.lapsystem.service.EmployeeService;
 
 //here is the switch
 
-//@Component
+@Component
 public class DataLoader implements CommandLineRunner {
 	@Autowired
 	private LeaveHistoryRepository lhr;
@@ -111,9 +113,7 @@ public class DataLoader implements CommandLineRunner {
 		lhr.save(lh3);
 		lhr.save(lh4);
 		
-		LocalDate ld4 = LocalDate.of(2019,1,1);
-		
-		PublicHoliday ph1 = new PublicHoliday(ld4,"New Year's Day");
+		PublicHoliday ph1 = new PublicHoliday(new GregorianCalendar(2019, Calendar.JANUARY , 1),"New Year's Day");
 		
 		phr.save(ph1);
 		
@@ -138,6 +138,9 @@ public class DataLoader implements CommandLineRunner {
 		LOG.info(lh2.toString());
 		LOG.info(lh3.toString());
 		
+		
+		LOG.info(ph1.toString());
+
 	}
 	
 }

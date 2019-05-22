@@ -1,6 +1,6 @@
 package sg.edu.nus.lapsystem.model;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +9,15 @@ import javax.persistence.Id;
 @Entity
 public class PublicHoliday {
 	@Id
-	private LocalDate date;
+	private Calendar date;
 	@Column(nullable = false, length = 30)
 	private String holidayName;
 	
 	//getter setter
-	public LocalDate getDate() {
+	public Calendar getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 	public String getHolidayName() {
@@ -35,14 +35,14 @@ public class PublicHoliday {
 	
 	
 	
-	public PublicHoliday(LocalDate date, String holidayName) {
+	public PublicHoliday(Calendar date, String holidayName) {
 		super();
 		this.date = date;
 		this.holidayName = holidayName;
 	}
 	@Override
 	public String toString() {
-		return "PublicHoliday [date=" + date + ", holidayName=" + holidayName + "]";
+		return "PublicHoliday [date=" + date.get(Calendar.DATE) + ","+  date.get(Calendar.MONTH) +","+date.get(Calendar.YEAR)+ ", holidayName=" + holidayName + "]";
 	}
 	
 	

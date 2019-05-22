@@ -1,9 +1,11 @@
 package sg.edu.nus.lapsystem.repository;
 
+import java.util.Calendar;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import sg.edu.nus.lapsystem.model.PublicHoliday;
 
-public interface PublicHolidayRepository extends JpaRepository<PublicHoliday, Integer>{
+public interface PublicHolidayRepository extends JpaRepository<PublicHoliday, Calendar>{
 
 }
