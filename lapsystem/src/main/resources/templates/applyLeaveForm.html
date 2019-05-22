@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="BIG5">
+<title>Apply Leave Form</title>
+</head>
+<body>
+
+	<form action="#"
+		th:action="${'submit'}"
+		th:object="${LeaveHistory}" method="post">
+	
+		<span>Leave Category</span>
+		<select name="leaveCategory" th:field="*{leaveCategory}">
+			<option value="Annual Leave">Annual Leave</option>
+			<option value="Compensation Leave">Compensation Leave</option>
+			<option value="Medical Leave">Medical Leave</option>
+		</select><br>
+		
+		<label for="leaveStartDate">Leave Start Date</label>
+		<input type="date" name="leaveStartDate" id="leaveStartDate" th:field="*{leaveStartDate}"/><br>
+		
+		<label for="leaveEndDate">Leave End Date</label>
+		<input type="date" name="leaveEndDate" id="leaveEndDate" th:field="*{leaveEndDate}"/><br>
+		
+		<span>Additional Reasons</span>
+		<textarea name="additionalReasons" id="additionalReasons"
+			th:field="*{additionalReasons}"></textarea><br>
+			
+		<span>Work Dissemination</span>
+		<textarea name="workDissemination" id="workDissemination"
+			th:field="*{workDissemination}"></textarea><br>
+
+		<span>Contract Detail</span>		
+		<textarea name="contractDetail" id="contractDetail"
+			th:field="*{contractDetail}"></textarea><br>
+
+
+		<input type="submit"/>
+	</form>
+
+</body>
+</html>
