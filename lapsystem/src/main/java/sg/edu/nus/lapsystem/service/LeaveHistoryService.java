@@ -40,4 +40,8 @@ public class LeaveHistoryService {
 		}
 		return lhr.findByStatusAndEmployee_IdIn("Applied",ids);
 	}
+	
+	public List<LeaveHistory> findAll(){
+		return lhr.findAllByOrderByIdDesc();
+	}
 }

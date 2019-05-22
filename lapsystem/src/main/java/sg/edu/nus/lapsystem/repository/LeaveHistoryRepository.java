@@ -11,4 +11,5 @@ public interface LeaveHistoryRepository extends JpaRepository<LeaveHistory, Inte
 	List<LeaveHistory> findByStatus(String status);
 	LeaveHistory findById(int id);
 	List<LeaveHistory> findByStatusAndEmployee_IdIn(String status,Set<Integer> ids);
+	List<LeaveHistory> findAllByOrderByIdDesc();
 }

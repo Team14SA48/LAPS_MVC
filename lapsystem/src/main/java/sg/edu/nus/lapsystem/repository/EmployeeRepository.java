@@ -8,4 +8,5 @@ import sg.edu.nus.lapsystem.model.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	List<Employee> findBySupervisor_Id(int SupervisorId);
+	Employee findById(int id);
 }

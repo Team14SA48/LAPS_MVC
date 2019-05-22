@@ -5,39 +5,66 @@
 <title>Apply Leave Form</title>
 </head>
 <body>
+<h1>Apply Leave Form</h1>
 
-	<form action="#"
-		th:action="${'submit'}"
-		th:object="${LeaveHistory}" method="post">
+<p th:text="${'User Id: ' + User.id}"></p>
+<span>AnnualLeave Days Left: </span><span th:text="${User.annualLeaveDaysLeft}"></span><br>
+<span>MedicalLeave Days Left: </span><span th:text="${User.medicalLeaveDaysLeft}"></span>
+
+
+	<form action="#" th:action="${'submit'}" th:object="${Leave}" method="post">
 	
-		<span>Leave Category</span>
-		<select name="leaveCategory" th:field="*{leaveCategory}">
-			<option value="Annual Leave">Annual Leave</option>
+		<label for="leaveCategory">Leave Category</label>
+		<select name="leaveCategory" th:field="*{leaveCategory}" >
+			<option value="Annual Leave" >Annual Leave</option>
 			<option value="Compensation Leave">Compensation Leave</option>
 			<option value="Medical Leave">Medical Leave</option>
 		</select><br>
 		
 		<label for="leaveStartDate">Leave Start Date</label>
-		<input type="date" name="leaveStartDate" id="leaveStartDate" th:field="*{leaveStartDate}"/><br>
+		<input type="date" name="leaveStartDate" id="leaveStartDate" th:field="*{leaveStartDate}" required/><br>
 		
 		<label for="leaveEndDate">Leave End Date</label>
-		<input type="date" name="leaveEndDate" id="leaveEndDate" th:field="*{leaveEndDate}"/><br>
+		<input type="date" name="leaveEndDate" id="leaveEndDate" th:field="*{leaveEndDate}" required/><br>
 		
-		<span>Additional Reasons</span>
-		<textarea name="additionalReasons" id="additionalReasons"
-			th:field="*{additionalReasons}"></textarea><br>
+		<label for="additionalReasons">Additional Reasons</label>
+		<textarea name="additionalReasons" id="additionalReasons" th:field="*{additionalReasons}" required></textarea><br>
 			
-		<span>Work Dissemination</span>
-		<textarea name="workDissemination" id="workDissemination"
-			th:field="*{workDissemination}"></textarea><br>
-
-		<span>Contract Detail</span>		
-		<textarea name="contractDetail" id="contractDetail"
-			th:field="*{contractDetail}"></textarea><br>
-
+		<label for="workDissemination">Work Dissemination</label>
+		<textarea name="workDissemination" id="workDissemination" th:field="*{workDissemination}"></textarea><br>
+		
+		<span>Overseas</span><br>
+		<input type="radio" name="ifOverseas"  id ="ifOverseas_NO" value="false" checked/><label for="ifOverseas_NO">No</label><br>
+		<input type="radio" name="ifOverseas"  id ="ifOverseas_YES" value="True" /><label for="ifOverseas_YES">Yes</label><br>
+		
+		
+		<label for="contractDetail">Contract Detail</label>
+		<textarea name="contractDetail" id="contractDetail" th:field="*{contractDetail}"></textarea><br>
 
 		<input type="submit"/>
+		
 	</form>
+
+	<table>
+		<tr>
+			<td>leaveCategory</td>
+			<td>status</td>
+			<td>leaveStartDate</td>
+			<td>leaveEndDate</td>
+			<td>leaveDays</td>
+			<td>submitDate</td>
+			<td>Detail</td>
+		</tr>
+		<tr th:each="LeaveHistory : ${LeaveRequestList}">
+			<td th:text="${LeaveHistory.leaveCategory.leaveCategory}">leaveCategory</td>
+			<td th:text="${LeaveHistory.status}">status</td>
+			<td th:text="${LeaveHistory.leaveStartDate}">leaveStartDate</td>
+			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
+			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
+			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
+			<td><a th:href="${'LeaveRequestDetail?id=' + LeaveHistory.id}">Detail</a></td>
+		</tr>
+	</table>
 
 </body>
 </html>
