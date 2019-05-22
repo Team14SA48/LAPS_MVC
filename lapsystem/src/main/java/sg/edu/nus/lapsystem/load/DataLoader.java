@@ -1,8 +1,6 @@
 package sg.edu.nus.lapsystem.load;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -113,9 +111,38 @@ public class DataLoader implements CommandLineRunner {
 		lhr.save(lh3);
 		lhr.save(lh4);
 		
-		PublicHoliday ph1 = new PublicHoliday(new GregorianCalendar(2019, Calendar.JANUARY , 1),"New Year's Day");
+		LocalDate ldpb1 = LocalDate.of(2019,1,1);
+		LocalDate ldpb2 = LocalDate.of(2019,2,6);
+		LocalDate ldpb3 = LocalDate.of(2019,4,19);
+		LocalDate ldpb4 = LocalDate.of(2019,5,1);
+		LocalDate ldpb5 = LocalDate.of(2019,5,19);
+		LocalDate ldpb6 = LocalDate.of(2019,6,5);
+		LocalDate ldpb7 = LocalDate.of(2019,8,9);
+		LocalDate ldpb8 = LocalDate.of(2019,8,11);
+		LocalDate ldpb9 = LocalDate.of(2019,11,27);
+		LocalDate ldpb10 = LocalDate.of(2019,12,25);
+		
+		PublicHoliday ph1 = new PublicHoliday(ldpb1,"New Year's Day");
+		PublicHoliday ph2 = new PublicHoliday(ldpb2,"Chinese New Year");
+		PublicHoliday ph3 = new PublicHoliday(ldpb3,"Good Friday");
+		PublicHoliday ph4 = new PublicHoliday(ldpb4,"Labour Day");
+		PublicHoliday ph5 = new PublicHoliday(ldpb5,"Vesak Day");
+		PublicHoliday ph6 = new PublicHoliday(ldpb6,"Hari Raya Puasa");
+		PublicHoliday ph7 = new PublicHoliday(ldpb7,"National Day");
+		PublicHoliday ph8 = new PublicHoliday(ldpb8,"Hari Raya Haji");
+		PublicHoliday ph9 = new PublicHoliday(ldpb9,"Deepavali");
+		PublicHoliday ph10 = new PublicHoliday(ldpb10,"Christmas Day");
 		
 		phr.save(ph1);
+		phr.save(ph2);
+		phr.save(ph3);
+		phr.save(ph4);
+		phr.save(ph5);
+		phr.save(ph6);
+		phr.save(ph7);
+		phr.save(ph8);
+		phr.save(ph9);
+		phr.save(ph10);
 		
 		LOG.info(adl1.toString());
 		LOG.info(adl2.toString());
