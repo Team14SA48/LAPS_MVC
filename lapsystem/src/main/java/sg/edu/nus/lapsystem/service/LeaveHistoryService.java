@@ -79,7 +79,7 @@ public class LeaveHistoryService {
 	}
 
 	public List<LeaveHistory> findByEmployeeId(int id){
-		return lhr.findByEmployee_Id(id);
+		return lhr.findByEmployee_IdOrderByIdDesc(id);
 	}
 	
 	// List all Requests with status "Applied"

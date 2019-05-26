@@ -2,17 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="BIG5">
-<title>LeaveRequestDetail</title>
+<title>Leave Detail</title>
 </head>
 <body>
-	<h1>Leave Request Detail</h1>
+	<h1>Leave Detail</h1>
 
-	<p>User ID</p>
-	<p th:text="${user}"></p>
+	<a th:href="@{/menu}">Menu</a><br>
+	<a th:if="${UserAccess.applyLeave}" href="/Employee/ApplyLeave">Apply Leave</a><br>
+
+	
 
 	<table>
 		<tr>
-			<td>id</td>
+			<td>Leave id</td>
 			<td>employee</td>
 			<td>leaveCategory</td>
 			<td>status</td>
@@ -33,7 +35,7 @@
 			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
 		</tr>
 	</table>
-	<h2>Details</h2>
+
 	<table>
 		<tr>
 			<td>Additional Reason</td>
@@ -50,19 +52,6 @@
 			<td th:text="${LeaveHistory.contractDetail}">Contract Detail</td>
 		</tr>
 	</table>
-
-	<p>
-		<a
-			th:href="${'ApproveOrReject?id=' + LeaveHistory.id + '&approveOrNot=true&rejectReason='}">Approve</a>
-	</p>
-
-	<form action="#"
-		th:action="${'ApproveOrReject?id=' + LeaveHistory.id + '&approveOrNot=false'}"
-		th:object="${LeaveHistory}" method="post">
-		<textarea id="rejectReason" name="rejectReason"
-			th:field="*{rejectReason}"></textarea>
-		<button type="submit">Reject</button>
-	</form>
 
 </body>
 </html>

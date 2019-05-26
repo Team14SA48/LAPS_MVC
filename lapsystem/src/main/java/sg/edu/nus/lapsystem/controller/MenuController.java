@@ -2,10 +2,12 @@ package sg.edu.nus.lapsystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sg.edu.nus.lapsystem.Access.UserAccess;
 import sg.edu.nus.lapsystem.model.LeaveHistory;
 import sg.edu.nus.lapsystem.service.EmployeeService;
 import sg.edu.nus.lapsystem.service.LeaveHistoryService;
@@ -22,6 +24,10 @@ public class MenuController {
 	public String Menu(@CookieValue("userId")int userId,Model model) {
 		model.addAttribute("User", es.findById(userId));
 		model.addAttribute("LeaveHistory", lhs.findByEmployeeId(userId));
+		
+		UserAccess userAccess = new UserAccess(es.findById(userId));
+		model.addAttribute("UserAccess", userAccess);
+
 		return "menu";
 	}
 }

@@ -7,6 +7,9 @@
 <body>
 <h1>Apply Leave Form</h1>
 
+<a href="/logout">Log Out</a><br>
+<a href="/menu">Menu</a><br>
+
 <p th:text="${'User Id: ' + User.id}"></p>
 <span>AnnualLeave Days Left: </span><span th:text="${User.annualLeaveDaysLeft}"></span><br>
 <span>MedicalLeave Days Left: </span><span th:text="${User.medicalLeaveDaysLeft}"></span>
@@ -45,7 +48,7 @@
 		
 	</form>
 
-	<table>
+<table>
 		<tr>
 			<td>leaveCategory</td>
 			<td>status</td>
@@ -55,14 +58,14 @@
 			<td>submitDate</td>
 			<td>Detail</td>
 		</tr>
-		<tr th:each="LeaveHistory : ${LeaveRequestList}">
+		<tr th:each="LeaveHistory : ${HistoryLeaveList}">
 			<td th:text="${LeaveHistory.leaveCategory.leaveCategory}">leaveCategory</td>
 			<td th:text="${LeaveHistory.status}">status</td>
 			<td th:text="${LeaveHistory.leaveStartDate}">leaveStartDate</td>
 			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
 			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
 			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
-			<td><a th:href="${'LeaveRequestDetail?id=' + LeaveHistory.id}">Detail</a></td>
+			<td><a th:href="${'/Employee/LeaveDetail?leaveId=' + LeaveHistory.id}">Detail</a></td>
 		</tr>
 	</table>
 

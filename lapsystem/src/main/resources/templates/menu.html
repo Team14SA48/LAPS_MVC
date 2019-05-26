@@ -7,8 +7,10 @@
 <body>
 <h1>Menu</h1>
 
-<a href="/logout">Log Out</a>
-<a href="/Employee/ApplyLeave">ApplyLeave</a>
+<a href="/logout">Log Out</a><br>
+<a th:if="${UserAccess.applyLeave}" href="/Employee/ApplyLeave">Apply Leave</a><br>
+<a th:if="${UserAccess.approveLeave}" href="/Manager/ListLeaveRequests">Leave Requests</a><br>
+
 
 <p th:text="${'User Id: ' + User.id}"></p>
 <span>AnnualLeave Days Left: </span><span th:text="${User.annualLeaveDaysLeft}"></span><br>
@@ -31,7 +33,7 @@
 			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
 			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
 			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
-			<td><a th:href="${'LeaveRequestDetail?id=' + LeaveHistory.id}">Detail</a></td>
+			<td><a th:href="${'/Employee/LeaveDetail?leaveId=' + LeaveHistory.id}">Detail</a></td>
 		</tr>
 	</table>
 

@@ -5,6 +5,7 @@ package sg.edu.nus.lapsystem.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -16,45 +17,38 @@ import sg.edu.nus.lapsystem.service.LeaveHistoryService;
 
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping(path="Manager")
 public class ManagerController {
 	
 	@Autowired
 	private LeaveHistoryService lhs;
 	
-	public ManagerController() {
-		lhs = new LeaveHistoryService();
-		
-	}
-	
-	@RequestMapping(path="LeaveRequests")
-	public String showLeaveRequests(Model model) {
+	@RequestMapping(path="ListLeaveRequests")
+	public String listLeaveRequests(@CookieValue("userId") int userId,Model model) {
         
-        // this will be delete later
-        model.addAttribute("user", 1);
-        model.addAttribute("LeaveRequestList", lhs.listAppliedRequests((int)model.asMap().get("user")));
+        model.addAttribute("LeaveRequests", lhs.listAppliedRequests(userId));
         return "LeaveRequests";
     }
 	
-	@RequestMapping(path="LeaveRequestDetail")
-	public String showLeaveRequestDetail(@RequestParam int id,Model model) {
-		model.addAttribute("LeaveHistory",lhs.findLeaveHistoryById(id));
-        return "LeaveRequestDetail";
-    }
+	@RequestMapping(path="LeaveDetail")
+	public String LeaveRequestsDetail(@CookieValue("userId") int userId,@RequestParam int leaveId,Model model) {
+        model.addAttribute("LeaveRequest", lhs.findLeaveHistoryById(leaveId));
+		return "RequestsDetail";
+	}
 	
-	@RequestMapping(path="ApproveOrReject")
-	public ModelAndView approveOrReject(@RequestParam int id,@RequestParam boolean approveOrNot,@RequestParam String rejectReason,Model model) {
+	@RequestMapping(path="Approve")
+	public String approveOrReject(@CookieValue("userId") int userId,@RequestParam int id,@RequestParam boolean isApprove,@RequestParam String rejectReason,Model model) {
 		LeaveHistory lh = lhs.findLeaveHistoryById(id);
-		if(approveOrNot) {
-			//lh.setStatus("Approved");
-			lhs.save(lh);
+		if(isApprove) {
+			lh.setStatus("Approved");
 			
-		}else if(!approveOrNot) {
-			//lh.setStatus("Rejected");
+			
+		}else if(!isApprove) {
+			lh.setStatus("Rejected");
 			lh.setRejectReason(rejectReason);
-			lhs.save(lh);
 		}
-		return new ModelAndView("redirect:/Manager/LeaveRequests");
+		lhs.save(lh);
+		model.addAttribute("LeaveRequests", lhs.listAppliedRequests(userId));
+		return "LeaveRequests";
 	}
 }

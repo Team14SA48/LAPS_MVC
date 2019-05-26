@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="BIG5">
+<title>Leave Request Detail</title>
+</head>
+<body>
+	<h1>Leave Request Detail</h1>
+	<a href="/logout">Log Out</a>
+	<br>
+	<a href="/Manager/ListLeaveRequests">Back to List</a>
+	<br>
+	<a href="/menu">Menu</a>
+	<br>
+
+
+	<table>
+		<tr>
+			<td>Employee</td>
+			<td>leaveCategory</td>
+			<td>leaveStartDate</td>
+			<td>leaveEndDate</td>
+			<td>leaveDays</td>
+			<td>submitDate</td>
+		</tr>
+		<tr>
+			<td th:text="${LeaveRequest.Employee.name}">leaveCategory</td>
+			<td th:text="${LeaveRequest.leaveCategory.leaveCategory}">leaveCategory</td>
+			<td th:text="${LeaveRequest.leaveStartDate}">leaveStartDate</td>
+			<td th:text="${LeaveRequest.leaveEndDate}">leaveEndDat</td>
+			<td th:text="${LeaveRequest.leaveDays}">leaveDays</td>
+			<td th:text="${LeaveRequest.submitDate}">submitDate</td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<td>Additional Reason</td>
+			<td th:text="${LeaveRequest.additionalReasons}">Additional
+				Reason</td>
+		</tr>
+		<tr>
+			<td>Work Dissemination</td>
+			<td th:text="${LeaveRequest.workDissemination}">Work
+				Dissemination</td>
+		</tr>
+		<tr>
+			<td>Contract Detail</td>
+			<td th:text="${LeaveRequest.contractDetail}">Contract Detail</td>
+		</tr>
+	</table>
+	
+	<form action="#" th:action="${'submit'}" th:object="${leaveForm}" method="post">
+		<input type="radio" name="isApprove"  id ="isApprove_YES" value="false" /><label for="isApprove_YES">Approve</label><br>
+		<input type="radio" name="isApprove"  id ="isApprove_NO" value="True" /><label for="isApprove_NO">Reject</label><br>
+		<label for="rejectReason">Reject Reason</label>
+		<textarea name="rejectReason"  id ="rejectReason"></textarea><br>
+		<input type="hidden" th:field="${LeaveRequest.id}">
+		<input type="submit">
+	</form>
+
+</body>
+</html>

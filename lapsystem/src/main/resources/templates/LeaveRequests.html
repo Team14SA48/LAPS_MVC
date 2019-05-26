@@ -2,39 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="BIG5">
-<title>Leave Requests</title>
+<title>Leave Request List</title>
 </head>
 <body>
-	<h1>Leave Requests</h1>
-	
-	<p>User ID</p>
-	<p th:text="${user}"></p>
-	
+	<h1>Leave Request List</h1>
+	<a href="/logout">Log Out</a>
+	<br>
+	<a href="/menu">Menu</a>
+	<br>
+
+
 	<table>
 		<tr>
-			<td>id</td>
-			<td>employee</td>
+			<td>Employee</td>
 			<td>leaveCategory</td>
-			<td>status</td>
 			<td>leaveStartDate</td>
 			<td>leaveEndDate</td>
 			<td>leaveDays</td>
 			<td>submitDate</td>
 			<td>Detail</td>
-
 		</tr>
-		<tr th:each="LeaveHistory : ${LeaveRequestList}">
-			<td th:text="${LeaveHistory.id}">id</td>
-			<td th:text="${LeaveHistory.employee.name}">employee</td>
+		<tr th:each="LeaveHistory : ${LeaveRequests}">
+			<td th:text="${LeaveHistory.Employee.name}">leaveCategory</td>
 			<td th:text="${LeaveHistory.leaveCategory.leaveCategory}">leaveCategory</td>
-			<td th:text="${LeaveHistory.status}">status</td>
 			<td th:text="${LeaveHistory.leaveStartDate}">leaveStartDate</td>
 			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
 			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
 			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
-			<td><a th:href="${'LeaveRequestDetail?id=' + LeaveHistory.id}">Detail</a></td>
-
+			<td><a th:href="${'/Manager/LeaveDetail?leaveId=' + LeaveHistory.id}">Detail</a></td>
 		</tr>
 	</table>
+
 </body>
 </html>
