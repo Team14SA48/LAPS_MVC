@@ -1,7 +1,6 @@
 package sg.edu.nus.lapsystem.model;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class LeaveHistory {
@@ -18,8 +19,10 @@ public class LeaveHistory {
 	@ManyToOne
 	private Employee employee;
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate leaveStartDate;
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate leaveEndDate;
 	@Column(nullable = false)
 	private int leaveDays;
@@ -35,13 +38,11 @@ public class LeaveHistory {
 	private String rejectReason;
 
 	// getter setter
+
 	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	// can not set Id
 
 	public Employee getEmployee() {
 		return employee;
@@ -49,7 +50,6 @@ public class LeaveHistory {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-		employee.getLeaveHistories().add(this);
 	}
 
 	public LocalDate getLeaveStartDate() {
@@ -72,6 +72,7 @@ public class LeaveHistory {
 		return leaveDays;
 	}
 
+	// only service class can use this
 	public void setLeaveDays(int leaveDays) {
 		this.leaveDays = leaveDays;
 	}
@@ -80,6 +81,7 @@ public class LeaveHistory {
 		return submitDate;
 	}
 
+	// only service class can change this
 	public void setSubmitDate(LocalDate submitDate) {
 		this.submitDate = submitDate;
 	}
@@ -90,7 +92,6 @@ public class LeaveHistory {
 
 	public void setLeaveCategory(LeaveCategory leaveCategory) {
 		this.leaveCategory = leaveCategory;
-		leaveCategory.getLeaveHistory().add(this);
 	}
 
 	public String getAdditionalReasons() {
@@ -121,8 +122,31 @@ public class LeaveHistory {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	// status transition
+	public void setStatus(String status) throws IllegalArgumentException {
+		if (this.status == null) {
+			if (status == "Applied")
+				this.status = "Applied";
+			else
+				throw new IllegalArgumentException("Invalid transition status");
+		} else if (status == "Applied" || status == "Updated") {
+			if (status == "Updated")
+				this.status = "Updated";
+			else if (status == "Deleted")
+				this.status = "Deleted";
+			else if (status == "Approved")
+				this.status = "Approved";
+			else if (status == "Rejected")
+				this.status = "Rejected";
+			else
+				throw new IllegalArgumentException("Invalid transition status");
+		} else if (status == "Approved") {
+			if (status == "Cancel")
+				this.status = "Cancel";
+			else
+				throw new IllegalArgumentException("Invalid transition status");
+		} else
+			throw new IllegalArgumentException("Invalid transition status");
 	}
 
 	public String getRejectReason() {
@@ -136,23 +160,22 @@ public class LeaveHistory {
 	// constructor
 	public LeaveHistory() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public LeaveHistory(Employee employee, LocalDate leaveStartDate, LocalDate leaveEndDate,
-			LeaveCategory leaveCategory, String additionalReasons, String status) {
-		super();
+			LeaveCategory leaveCategory, String additionalReasons) {
+		this(employee, leaveStartDate, leaveEndDate, LocalDate.now(), leaveCategory, additionalReasons);
+	}
+
+	public LeaveHistory(Employee employee, LocalDate leaveStartDate, LocalDate leaveEndDate, LocalDate submitDate,
+			LeaveCategory leaveCategory, String additionalReasons) {
 		this.employee = employee;
-		employee.getLeaveHistories().add(this);
 		this.leaveStartDate = leaveStartDate;
 		this.leaveEndDate = leaveEndDate;
-		leaveDays = (int) ChronoUnit.DAYS.between(leaveStartDate,leaveEndDate)+1;
-		this.submitDate = LocalDate.now();
+		this.submitDate = submitDate;
 		this.leaveCategory = leaveCategory;
-		leaveCategory.getLeaveHistory().add(this);
 		this.additionalReasons = additionalReasons;
-		this.status = status;
-		// have to maintain here
+		this.status = "History Input";
 	}
 
 	@Override

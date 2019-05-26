@@ -88,9 +88,9 @@ public class DataLoader implements CommandLineRunner {
 		er.save(e7);
 		er.save(e8);
 		
-		LeaveCategory lc1 = new LeaveCategory("annual leave");
-		LeaveCategory lc2 = new LeaveCategory("medical leave");
-		LeaveCategory lc3 = new LeaveCategory("compensation leave");
+		LeaveCategory lc1 = new LeaveCategory("Annual Leave");
+		LeaveCategory lc2 = new LeaveCategory("Medical Leave");
+		LeaveCategory lc3 = new LeaveCategory("Compensation Leave");
 
 		lcr.save(lc1);
 		lcr.save(lc2);
@@ -100,16 +100,16 @@ public class DataLoader implements CommandLineRunner {
 		LocalDate ld2 = LocalDate.of(2019, 8, 1);
 		LocalDate ld3 = LocalDate.of(2019, 9, 1);
 		
-		LeaveHistory lh1 = new LeaveHistory(e1,ld1,ld1.plusDays(30),lc1,"I am getting married!!!","Applied");
-		LeaveHistory lh2 = new LeaveHistory(e6,ld2,ld2.plusDays(1),lc1,"I need more time to chat with my little sises","Rejected");
-		LeaveHistory lh3 = new LeaveHistory(e4,ld3,ld3.plusDays(2),lc1,"zzz...","Approved");
-		LeaveHistory lh4 = new LeaveHistory(e1,ld1.plusDays(30),ld1.plusDays(60).plusDays(30),lc1,"HoneyMoon!!!","Applied");
+		//LeaveHistory lh1 = new LeaveHistory(e1,ld1,ld1.plusDays(30),lc1,"I am getting married!!!","Applied");
+		//LeaveHistory lh2 = new LeaveHistory(e6,ld2,ld2.plusDays(1),lc1,"I need more time to chat with my little sises","Rejected");
+		//LeaveHistory lh3 = new LeaveHistory(e4,ld3,ld3.plusDays(2),lc1,"zzz...","Approved");
+		//LeaveHistory lh4 = new LeaveHistory(e1,ld1.plusDays(30),ld1.plusDays(60).plusDays(30),lc1,"HoneyMoon!!!","Applied");
 
 
-		lhr.save(lh1);
-		lhr.save(lh2);
-		lhr.save(lh3);
-		lhr.save(lh4);
+		//lhr.save(lh1);
+		//lhr.save(lh2);
+		//lhr.save(lh3);
+		//lhr.save(lh4);
 		
 		LocalDate ldpb1 = LocalDate.of(2019,1,1);
 		LocalDate ldpb2 = LocalDate.of(2019,2,6);
@@ -161,9 +161,9 @@ public class DataLoader implements CommandLineRunner {
 		LOG.info(lc2.toString());
 		LOG.info(lc3.toString());
 		
-		LOG.info(lh1.toString());
-		LOG.info(lh2.toString());
-		LOG.info(lh3.toString());
+		//LOG.info(lh1.toString());
+		//LOG.info(lh2.toString());
+		//LOG.info(lh3.toString());
 		
 		
 		LOG.info(ph1.toString());

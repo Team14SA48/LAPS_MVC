@@ -1,5 +1,7 @@
 package sg.edu.nus.lapsystem.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +27,11 @@ public class EmployeeService {
 		return er.findById(id);
 	}
 	
+	public List<Employee> findBySupervisor_Id(int ManagerId){
+		return er.findBySupervisor_Id(ManagerId);
+	}
+	
+	public void save(Employee employee) {
+		er.saveAndFlush(employee);
+	}
 }

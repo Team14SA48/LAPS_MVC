@@ -47,11 +47,11 @@ public class ManagerController {
 	public ModelAndView approveOrReject(@RequestParam int id,@RequestParam boolean approveOrNot,@RequestParam String rejectReason,Model model) {
 		LeaveHistory lh = lhs.findLeaveHistoryById(id);
 		if(approveOrNot) {
-			lh.setStatus("Approved");
+			//lh.setStatus("Approved");
 			lhs.save(lh);
 			
 		}else if(!approveOrNot) {
-			lh.setStatus("Rejected");
+			//lh.setStatus("Rejected");
 			lh.setRejectReason(rejectReason);
 			lhs.save(lh);
 		}
