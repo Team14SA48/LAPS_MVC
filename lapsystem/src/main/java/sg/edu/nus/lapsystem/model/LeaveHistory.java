@@ -125,23 +125,23 @@ public class LeaveHistory {
 	// status transition
 	public void setStatus(String status) throws IllegalArgumentException {
 		if (this.status == null) {
-			if (status == "Applied")
+			if (status.equals("Applied"))
 				this.status = "Applied";
 			else
 				throw new IllegalArgumentException("Invalid transition status");
-		} else if (status == "Applied" || status == "Updated") {
-			if (status == "Updated")
+		} else if (this.status.equals("Applied") || this.status.equals("Updated")) {
+			if (status.equals("Updated"))
 				this.status = "Updated";
-			else if (status == "Deleted")
+			else if (status.equals("Deleted"))
 				this.status = "Deleted";
-			else if (status == "Approved")
+			else if (status.equals("Approved"))
 				this.status = "Approved";
-			else if (status == "Rejected")
+			else if (status.equals("Rejected"))
 				this.status = "Rejected";
 			else
 				throw new IllegalArgumentException("Invalid transition status");
-		} else if (status == "Approved") {
-			if (status == "Cancel")
+		} else if (this.status.equals("Approved")) {
+			if (status.equals("Cancel"))
 				this.status = "Cancel";
 			else
 				throw new IllegalArgumentException("Invalid transition status");

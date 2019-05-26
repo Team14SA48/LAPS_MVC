@@ -42,8 +42,12 @@ public class LoginController {
 			cookie.setMaxAge(3600);	
 			res.addCookie(cookie);
 			return "redirect:/menu";
-		} else
-			return "redirect:/";
+		} else {
+			model.addAttribute("ErrorMessage", "Wrong Password or User ID");
+			model.addAttribute("LoginForm", new Employee());
+			return "login";
+		}
+			
 	}
 
 	@RequestMapping("/logout")

@@ -49,10 +49,10 @@
 			<td th:text="${LeaveRequest.contractDetail}">Contract Detail</td>
 		</tr>
 	</table>
-	
-	<form action="#" th:action="${'submit'}" th:object="${leaveForm}" method="post">
-		<input type="radio" name="isApprove"  id ="isApprove_YES" value="false" /><label for="isApprove_YES">Approve</label><br>
-		<input type="radio" name="isApprove"  id ="isApprove_NO" value="True" /><label for="isApprove_NO">Reject</label><br>
+	<p th:text="${ErrorMessage}"></p>
+	<form action="#" th:action="${'Approve'}" th:object="${leaveForm}" method="post">
+		<input type="radio" name="isApprove"  id ="isApprove_YES" value="true" /><label for="isApprove_YES">Approve</label><br>
+		<input type="radio" name="isApprove"  id ="isApprove_NO" value="false" /><label for="isApprove_NO">Reject</label><br>
 		<label for="rejectReason">Reject Reason</label>
 		<textarea name="rejectReason"  id ="rejectReason"></textarea><br>
 		<input type="hidden" th:field="${LeaveRequest.id}">
