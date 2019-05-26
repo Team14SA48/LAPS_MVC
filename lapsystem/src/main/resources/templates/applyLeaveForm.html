@@ -11,27 +11,27 @@
 <span>AnnualLeave Days Left: </span><span th:text="${User.annualLeaveDaysLeft}"></span><br>
 <span>MedicalLeave Days Left: </span><span th:text="${User.medicalLeaveDaysLeft}"></span>
 
-
-	<form action="#" th:action="${'submit'}" th:object="${Leave}" method="post">
+	<p th:text="${ErrorMessage}"></p>
+	<form action="#" th:action="${'submit'}" th:object="${leaveForm}" method="post">
 	
 		<label for="leaveCategory">Leave Category</label>
-		<select name="leaveCategory" th:field="*{leaveCategory}" >
+		<select th:field="*{leaveCategory}" >
 			<option value="Annual Leave" >Annual Leave</option>
 			<option value="Compensation Leave">Compensation Leave</option>
 			<option value="Medical Leave">Medical Leave</option>
 		</select><br>
 		
 		<label for="leaveStartDate">Leave Start Date</label>
-		<input type="date" name="leaveStartDate" id="leaveStartDate" th:field="*{leaveStartDate}" required/><br>
+		<input type="date" th:field="*{leaveStartDate}" required/><br>
 		
 		<label for="leaveEndDate">Leave End Date</label>
-		<input type="date" name="leaveEndDate" id="leaveEndDate" th:field="*{leaveEndDate}" required/><br>
+		<input type="date"th:field="*{leaveEndDate}" required/><br>
 		
 		<label for="additionalReasons">Additional Reasons</label>
-		<textarea name="additionalReasons" id="additionalReasons" th:field="*{additionalReasons}" required></textarea><br>
+		<textarea th:field="*{additionalReasons}" required></textarea><br>
 			
 		<label for="workDissemination">Work Dissemination</label>
-		<textarea name="workDissemination" id="workDissemination" th:field="*{workDissemination}"></textarea><br>
+		<textarea th:field="*{workDissemination}"></textarea><br>
 		
 		<span>Overseas</span><br>
 		<input type="radio" name="ifOverseas"  id ="ifOverseas_NO" value="false" checked/><label for="ifOverseas_NO">No</label><br>
@@ -39,8 +39,8 @@
 		
 		
 		<label for="contractDetail">Contract Detail</label>
-		<textarea name="contractDetail" id="contractDetail" th:field="*{contractDetail}"></textarea><br>
-
+		<textarea th:field="*{contractDetail}"></textarea><br>
+		
 		<input type="submit"/>
 		
 	</form>
