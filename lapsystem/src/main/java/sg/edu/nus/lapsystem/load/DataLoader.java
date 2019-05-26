@@ -155,7 +155,6 @@ public class DataLoader implements CommandLineRunner {
 		LocalDate ld5 = LocalDate.of(2019, 2, 1);
 		LocalDate ld6 = LocalDate.of(2019, 3, 1);
 
-
 		LeaveHistory lh1 = new LeaveHistory(e1, ld1, ld2, lc1, "I am getting married!!!");
 		lh1 = lhs.InputData(lh1);
 		LeaveHistory lh2 = new LeaveHistory(e6, ld1, ld3, lc2, "I need moretime to chat with my little sises");
@@ -171,18 +170,10 @@ public class DataLoader implements CommandLineRunner {
 		lhList.add(lh3);
 		lhList.add(lh4);
 
-
-
 		for (LeaveHistory lh : lhList) {
 			lhs.save(lh);
 			LOG.info(lh.toString());
 		}
-
-
-		// LeaveHistory lh3 = new
-		// LeaveHistory(e4,ld3,ld3.plusDays(2),lc1,"zzz...","Approved");
-		// LeaveHistory lh4 = new
-		// LeaveHistory(e1,ld1.plusDays(30),ld1.plusDays(60).plusDays(30),lc1,"HoneyMoon!!!","Applied");
 
 	}
 
