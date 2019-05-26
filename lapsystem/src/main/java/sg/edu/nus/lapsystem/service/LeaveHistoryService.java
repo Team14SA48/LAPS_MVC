@@ -53,6 +53,23 @@ public class LeaveHistoryService {
 		deductLeavedaysLeft(employee, leaveCategory, leaveForm.getLeaveDays());
 		return leaveForm;
 	}
+	
+	public LeaveHistory InputData(LeaveHistory leaveHistory) {
+		LocalDate leaveStartDate = leaveHistory.getLeaveStartDate();
+		LocalDate leaveEndDate = leaveHistory.getLeaveEndDate();
+		Employee employee = leaveHistory.getEmployee();
+		LocalDate now = LocalDate.now();
+		leaveHistory.setSubmitDate(now);
+		LeaveCategory leaveCategory = leaveHistory.getLeaveCategory();
+		
+		DateValidator(leaveStartDate, leaveEndDate);
+		WeekendValidator(leaveStartDate, leaveEndDate);
+		HolidaysValidator(leaveStartDate, leaveEndDate);
+		OverLapValidator(leaveStartDate, leaveEndDate, employee);
+		CalculateLeaveDays(leaveHistory);
+		deductLeavedaysLeft(employee, leaveCategory, leaveHistory.getLeaveDays());
+		return leaveHistory;
+	}
 
 	// Retrieve
 
@@ -150,7 +167,7 @@ public class LeaveHistoryService {
 	// Validators
 
 	// here have to add holiday validation
-	public Boolean HolidaysValidator(LocalDate startDate, LocalDate endDate) throws IllegalArgumentException {
+	private Boolean HolidaysValidator(LocalDate startDate, LocalDate endDate) throws IllegalArgumentException {
 		List<PublicHoliday> phList = phs.findAll();
 		for (PublicHoliday ph : phList) {
 			if (ph.getDate().isEqual(startDate))

@@ -23,7 +23,7 @@ public class MaintainLeaveTypeController {
 		this.leaveTypeRepository = leaveTypeRepository;
 	}
 	
-	@RequestMapping(path = "/")
+	@RequestMapping(path = "/needchange")
     public String index() {
         return "index";
     }

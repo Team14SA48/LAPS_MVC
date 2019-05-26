@@ -31,7 +31,7 @@ import sg.edu.nus.lapsystem.service.LeaveHistoryService;
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeService er;
+	private EmployeeService es;
 	@Autowired
 	private LeaveCategoryService lcs;
 	@Autowired
@@ -42,7 +42,7 @@ public class EmployeeController {
 		model.addAttribute("leaveForm", new LeaveHistory());
 		// delete this when combine login
 		int userId = 1;
-		model.addAttribute("User", er.findById(userId));
+		model.addAttribute("User", es.findById(userId));
 		model.addAttribute("LeaveRequestList", lhs.findByEmployeeId(userId));
 		return "applyLeaveForm";
 	}
@@ -52,7 +52,7 @@ public class EmployeeController {
 			@RequestParam boolean ifOverseas,Model model) {
 		// delete this when combine login
 		int userId = 1;
-		leaveform.setEmployee(er.findById(userId));
+		leaveform.setEmployee(es.findById(userId));
 		try {			
 			// additional validation here
 			if(ifOverseas&&leaveform.getContractDetail().equals(""))
@@ -64,7 +64,7 @@ public class EmployeeController {
 			lhs.save(leave);
 			
 			model.asMap().clear();
-			model.addAttribute("User", er.findById(userId));
+			model.addAttribute("User", es.findById(userId));
 			model.addAttribute("LeaveRequestList", lhs.findByEmployeeId(userId));
 			model.addAttribute("leaveForm", new LeaveHistory());
 
@@ -73,7 +73,7 @@ public class EmployeeController {
 			System.out.println((LeaveHistory)model.asMap().get("leaveForm"));
 
 			
-			model.addAttribute("User", er.findById(userId));
+			model.addAttribute("User", es.findById(userId));
 			model.addAttribute("LeaveRequestList", lhs.findByEmployeeId(userId));
 			model.addAttribute("ErrorMessage", iae.getMessage());
 			model.addAttribute("leaveForm", leaveform);

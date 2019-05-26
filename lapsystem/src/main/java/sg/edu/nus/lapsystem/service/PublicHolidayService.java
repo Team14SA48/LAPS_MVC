@@ -16,4 +16,8 @@ public class PublicHolidayService {
 	public List<PublicHoliday> findAll(){
 		return phr.findAll();
 	}
+	
+	public void save(PublicHoliday publicHoliday) {
+		phr.save(publicHoliday);
+	}
 }

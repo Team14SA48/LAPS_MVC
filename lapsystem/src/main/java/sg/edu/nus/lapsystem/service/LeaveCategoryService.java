@@ -14,4 +14,8 @@ public class LeaveCategoryService {
 	public LeaveCategory findByLeaveCategoryName(String leaveCategoryName) {
 		return lcr.findByLeaveCategory(leaveCategoryName);
 	}
+	
+	public void save(LeaveCategory leaveCategory) {
+		lcr.saveAndFlush(leaveCategory);
+	}
 }
