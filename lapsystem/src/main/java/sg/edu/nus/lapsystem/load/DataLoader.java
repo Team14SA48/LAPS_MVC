@@ -149,26 +149,61 @@ public class DataLoader implements CommandLineRunner {
 		}
 
 		LocalDate ld1 = LocalDate.of(2019, 1, 2);
-		LocalDate ld2 = LocalDate.of(2019, 1, 31);
-		LocalDate ld3 = LocalDate.of(2019, 1, 7);
-		LocalDate ld4 = LocalDate.of(2019, 1, 14);
+		LocalDate ld2 = LocalDate.of(2019, 1, 7);
+		LocalDate ld3 = LocalDate.of(2019, 1, 14);
+		LocalDate ld4 = LocalDate.of(2019, 1, 31);
 		LocalDate ld5 = LocalDate.of(2019, 2, 1);
-		LocalDate ld6 = LocalDate.of(2019, 3, 1);
+		LocalDate ld6 = LocalDate.of(2019, 2, 14);
+		LocalDate ld7 = LocalDate.of(2019, 3, 4);
+		LocalDate ld8 = LocalDate.of(2019, 3, 6);
+		LocalDate ld9 = LocalDate.of(2019, 3, 8);
+		LocalDate ld10 = LocalDate.of(2019, 3, 11);
+		
 
 		LeaveHistory lh1 = new LeaveHistory(e1, ld1, ld2, lc1, "I am getting married!!!");
 		lh1 = lhs.InputData(lh1);
-		LeaveHistory lh2 = new LeaveHistory(e6, ld1, ld3, lc2, "I need moretime to chat with my little sises");
+		LeaveHistory lh2 = new LeaveHistory(e1, ld1, ld3, lc2, "I need moretime to chat with my little sises");
 		lh2 = lhs.InputData(lh2);
-		LeaveHistory lh3 = new LeaveHistory(e4, ld1, ld4, lc1, "zzz...");
+		LeaveHistory lh3 = new LeaveHistory(e2, ld7, ld8, lc1, "zzz...");
 		lh3 = lhs.InputData(lh3);
-		LeaveHistory lh4 = new LeaveHistory(e1, ld5, ld6, lc1, "HoneyMoon!!!");
+		LeaveHistory lh4 = new LeaveHistory(e2, ld1, ld5, lc1, "HoneyMoon!!!");
 		lh4 = lhs.InputData(lh4);
+		LeaveHistory lh5 = new LeaveHistory(e3, ld2, ld4, lc2, "see brother!!!");
+		lh5 = lhs.InputData(lh5);
+		LeaveHistory lh6 = new LeaveHistory(e3, ld9, ld10, lc2, "have cold!!!");
+		lh6 = lhs.InputData(lh6);
+		LeaveHistory lh7 = new LeaveHistory(e4, ld7, ld9, lc1, "deal something!!!");
+		lh7 = lhs.InputData(lh7);
+		LeaveHistory lh8 = new LeaveHistory(e4, ld7, ld8, lc1, "go to school!!!");
+		lh8 = lhs.InputData(lh8);
+		LeaveHistory lh9 = new LeaveHistory(e5, ld2, ld5, lc2, "have headache!!!");
+		lh9 = lhs.InputData(lh9);
+		LeaveHistory lh10 = new LeaveHistory(e5, ld1, ld5, lc2, "go to hospital!!!");
+		lh10 = lhs.InputData(lh10);
+		LeaveHistory lh11 = new LeaveHistory(e6, ld9, ld10, lc1, "go to zoo!!!");
+		lh11 = lhs.InputData(lh11);
+		LeaveHistory lh12 = new LeaveHistory(e6, ld1, ld6, lc2, "see parents!!!");
+		lh12 = lhs.InputData(lh12);
+		LeaveHistory lh13 = new LeaveHistory(e7, ld8, ld10, lc2, "to relax!!!");
+		lh13 = lhs.InputData(lh13);
+		LeaveHistory lh14 = new LeaveHistory(e7, ld7, ld10, lc2, "too much pressure!!!");
+		lh14 = lhs.InputData(lh14);
 
 		List<LeaveHistory> lhList = new ArrayList<LeaveHistory>();
 		lhList.add(lh1);
 		lhList.add(lh2);
 		lhList.add(lh3);
 		lhList.add(lh4);
+		lhList.add(lh5);
+		lhList.add(lh6);
+		lhList.add(lh7);
+		lhList.add(lh8);
+		lhList.add(lh9);
+		lhList.add(lh10);
+		lhList.add(lh11);
+		lhList.add(lh12);
+		lhList.add(lh13);
+		lhList.add(lh14);
 
 		for (LeaveHistory lh : lhList) {
 			lhs.save(lh);
