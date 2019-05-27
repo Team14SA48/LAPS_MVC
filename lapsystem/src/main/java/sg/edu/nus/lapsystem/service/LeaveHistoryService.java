@@ -43,7 +43,7 @@ public class LeaveHistoryService {
 		LocalDate now = LocalDate.now();
 		leaveForm.setSubmitDate(now);
 		LeaveCategory leaveCategory = leaveForm.getLeaveCategory();
-		
+
 		DateValidator(leaveStartDate, leaveEndDate);
 		WeekendValidator(leaveStartDate, leaveEndDate);
 		SubmitDateValidator(leaveStartDate, now, 0);
@@ -53,7 +53,7 @@ public class LeaveHistoryService {
 		deductLeavedaysLeft(employee, leaveCategory, leaveForm.getLeaveDays());
 		return leaveForm;
 	}
-	
+
 	public LeaveHistory InputData(LeaveHistory leaveHistory) {
 		LocalDate leaveStartDate = leaveHistory.getLeaveStartDate();
 		LocalDate leaveEndDate = leaveHistory.getLeaveEndDate();
@@ -61,7 +61,7 @@ public class LeaveHistoryService {
 		LocalDate now = LocalDate.now();
 		leaveHistory.setSubmitDate(now);
 		LeaveCategory leaveCategory = leaveHistory.getLeaveCategory();
-		
+
 		DateValidator(leaveStartDate, leaveEndDate);
 		WeekendValidator(leaveStartDate, leaveEndDate);
 		HolidaysValidator(leaveStartDate, leaveEndDate);
@@ -78,17 +78,15 @@ public class LeaveHistoryService {
 		return lhr.findAllByOrderByIdDesc();
 	}
 
-	public List<LeaveHistory> findByEmployeeId(int id){
+	public List<LeaveHistory> findByEmployeeId(int id) {
 		return lhr.findByEmployee_IdOrderByIdDesc(id);
 	}
-	
+
 	// List all Requests with status "Applied"
 	public List<LeaveHistory> listAllAppliedRequests() {
 		return lhr.findByStatus("Applied");
 	}
 
-	
-	
 	// Find all Requests with status "Applied" under specific manager
 	public List<LeaveHistory> listAppliedRequests(int ManagerId) {
 		Set<Integer> ids = new HashSet<Integer>();
@@ -103,13 +101,29 @@ public class LeaveHistoryService {
 	public LeaveHistory findLeaveHistoryById(int id) {
 		return lhr.findById(id);
 	}
+
+	// Update
+
+	public void update(LeaveHistory lh) {
+		lhr.delete(lh);
+		
+		String leaveCategory = lh.getLeaveCategory().getLeaveCategory();
+		int leaveDays = lh.getLeaveDays();
+		if(leaveCategory.equals("Annual Leave"))
+			lh.getEmployee().setAnnualLeaveDaysLeft(lh.getEmployee().getAnnualLeaveDaysLeft()+leaveDays);
+		if(leaveCategory.equals("Medical Leave"))
+			lh.getEmployee().setMedicalLeaveDaysLeft(lh.getEmployee().getMedicalLeaveDaysLeft()+leaveDays);
 	
-	//U
+		LeaveHistory leave = CompleteAndValidateForm(lh);
+		leave.setStatus("Applied");
+		leave.setStatus("Updated");
+		lhr.saveAndFlush(lh);
+	}
 	
 	//D
 	
 	// Calculator
-	
+
 	private LeaveHistory CalculateLeaveDays(LeaveHistory lh) {
 		LocalDate startDate = lh.getLeaveStartDate();
 		LocalDate endDate = lh.getLeaveEndDate();

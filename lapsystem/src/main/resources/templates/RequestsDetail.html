@@ -55,7 +55,7 @@
 		<input type="radio" name="isApprove"  id ="isApprove_NO" value="false" /><label for="isApprove_NO">Reject</label><br>
 		<label for="rejectReason">Reject Reason</label>
 		<textarea name="rejectReason"  id ="rejectReason"></textarea><br>
-		<input type="hidden" th:field="${LeaveRequest.id}">
+		<input type="hidden" name="leaveId" id="leaveId" th:value="${LeaveRequest.id}">
 		<input type="submit">
 	</form>
 

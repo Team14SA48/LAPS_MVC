@@ -66,7 +66,6 @@ public class Employee {
 
 	public void setPosition(Position position) {
 		this.position = position;
-		position.getEmployees().add(this);
 	}
 
 	public Employee getSupervisor() {
@@ -75,8 +74,6 @@ public class Employee {
 
 	public void setSupervisor(Employee supervisor) {
 		this.supervisor = supervisor;
-		if (supervisor != null)
-			supervisor.getSubordinates().add(this);
 	}
 
 	public Set<Employee> getSubordinates() {
@@ -137,10 +134,7 @@ public class Employee {
 		super();
 		this.name = name;
 		this.position = position;
-		position.getEmployees().add(this);
 		this.supervisor = supervisor;
-		if (supervisor != null)
-			supervisor.getSubordinates().add(this);
 		medicalLeaveDaysLeft = MEDICAL_LEAVEDAYS;
 		this.role = role;
 		this.password = password;

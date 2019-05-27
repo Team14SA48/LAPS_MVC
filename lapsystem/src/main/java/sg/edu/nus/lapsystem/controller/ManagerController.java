@@ -37,13 +37,19 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(path="Approve")
-	public String approveOrReject(@CookieValue("userId") int userId,@RequestParam int id,@RequestParam boolean isApprove,@RequestParam String rejectReason,Model model) {
-		LeaveHistory lh = lhs.findLeaveHistoryById(id);
+	public String approveOrReject(@CookieValue("userId") int userId,@RequestParam int leaveId,@RequestParam boolean isApprove,@RequestParam String rejectReason,Model model) {
+		LeaveHistory lh = lhs.findLeaveHistoryById(leaveId);
 		if(isApprove) {
 			lh.setStatus("Approved");
 			
 			
 		}else if(!isApprove) {
+			if(rejectReason.equals("")) {
+				model.addAttribute("ErrorMessage", "Please input reject reason");
+				model.addAttribute("LeaveRequest", lhs.findLeaveHistoryById(leaveId));
+				return "RequestsDetail";
+			}
+				
 			lh.setStatus("Rejected");
 			lh.setRejectReason(rejectReason);
 		}

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import sg.edu.nus.lapsystem.Access.UserAccess;
 import sg.edu.nus.lapsystem.model.Employee;
 import sg.edu.nus.lapsystem.model.LeaveCategory;
 import sg.edu.nus.lapsystem.model.LeaveHistory;
@@ -45,19 +44,57 @@ public class EmployeeController {
 		model.addAttribute("User", es.findById(userId));
 		model.addAttribute("HistoryLeaveList", lhs.findByEmployeeId(userId));
 		
-		UserAccess userAccess = new UserAccess(es.findById(userId));
-		model.addAttribute("UserAccess", userAccess);
-		
 		return "applyLeaveForm";
 	}
+	
+	@RequestMapping(path = "EditLeave")
+	public String Edit(@CookieValue("userId") int userId,@RequestParam int leaveId, Model model) {
+		model.addAttribute("leaveForm", lhs.findLeaveHistoryById(leaveId));
+		model.addAttribute("User", es.findById(userId));
+		model.addAttribute("HistoryLeaveList", lhs.findByEmployeeId(userId));
+		
+		return "editLeaveForm";
+	}
+	
+	@RequestMapping(path = "EditSubmit")
+	public String EditSubmit(@ModelAttribute @Valid LeaveHistory leaveform, BindingResult bindingResult,
+			@RequestParam boolean ifOverseas, @CookieValue("userId") int userId, Model model) {
 
+		leaveform.setEmployee(es.findById(userId));
+		
+		try {
+			// additional validation here
+			if (ifOverseas && leaveform.getContractDetail().equals(""))
+				throw new IllegalArgumentException("Please input Contract Detail when going overseas");
+
+			
+			
+			lhs.update(leaveform);
+			
+			model.addAttribute("leaveForm", new LeaveHistory());
+			model.addAttribute("HistoryLeaveList", lhs.findByEmployeeId(userId));
+			model.addAttribute("User", es.findById(userId));
+			
+			return "redirect:/menu";
+		} catch (IllegalArgumentException iae) {
+			System.out.println(iae.getMessage());
+			
+			model.addAttribute("ErrorMessage", iae.getMessage());
+			model.addAttribute("leaveForm", leaveform);
+			model.addAttribute("HistoryLeaveList", lhs.findByEmployeeId(userId));
+			model.addAttribute("User", es.findById(userId));
+			
+			return "editLeaveForm";
+		}
+		
+		
+	}
+	
 	@RequestMapping(path = "submit")
 	public String Submit(@ModelAttribute @Valid LeaveHistory leaveform, BindingResult bindingResult,
 			@RequestParam boolean ifOverseas, @CookieValue("userId") int userId, Model model) {
 
 		leaveform.setEmployee(es.findById(userId));
-		UserAccess userAccess = new UserAccess(es.findById(userId));
-		model.addAttribute("UserAccess", userAccess);
 		
 		try {
 			// additional validation here
@@ -85,11 +122,12 @@ public class EmployeeController {
 
 	@RequestMapping(path = "LeaveDetail")
 	public String showLeaveRequestDetail(@CookieValue("userId") int userId, @RequestParam int leaveId, Model model) {
-		model.addAttribute("LeaveHistory", lhs.findLeaveHistoryById(leaveId));
+		LeaveHistory lh = lhs.findLeaveHistoryById(leaveId);
+		model.addAttribute("LeaveHistory",lh );
 		
-		UserAccess userAccess = new UserAccess(es.findById(userId));
-		model.addAttribute("UserAccess", userAccess);
-
+		boolean ifEdit = lh.getStatus().equals("Applied")||lh.getStatus().equals("Updated");
+		model.addAttribute("ifEdit", ifEdit);
+		
 		return "LeaveDetail";
 	}
 

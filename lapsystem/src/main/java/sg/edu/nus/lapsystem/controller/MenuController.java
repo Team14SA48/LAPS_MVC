@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sg.edu.nus.lapsystem.Access.UserAccess;
 import sg.edu.nus.lapsystem.model.LeaveHistory;
 import sg.edu.nus.lapsystem.service.EmployeeService;
 import sg.edu.nus.lapsystem.service.LeaveHistoryService;
@@ -25,8 +24,8 @@ public class MenuController {
 		model.addAttribute("User", es.findById(userId));
 		model.addAttribute("LeaveHistory", lhs.findByEmployeeId(userId));
 		
-		UserAccess userAccess = new UserAccess(es.findById(userId));
-		model.addAttribute("UserAccess", userAccess);
+		boolean ifApproveLeave = es.findById(userId).getRole().equals("manager");
+		model.addAttribute("ifApproveLeave",ifApproveLeave);
 
 		return "menu";
 	}

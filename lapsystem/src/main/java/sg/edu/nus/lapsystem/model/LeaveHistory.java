@@ -42,7 +42,10 @@ public class LeaveHistory {
 	public int getId() {
 		return id;
 	}
-	// can not set Id
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Employee getEmployee() {
 		return employee;

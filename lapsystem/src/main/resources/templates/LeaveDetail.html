@@ -7,10 +7,13 @@
 <body>
 	<h1>Leave Detail</h1>
 
-	<a th:href="@{/menu}">Menu</a><br>
-	<a th:if="${UserAccess.applyLeave}" href="/Employee/ApplyLeave">Apply Leave</a><br>
+	<a th:href="@{/menu}">Menu</a>
+	<br>
+	<a href="/Employee/ApplyLeave">Apply Leave</a>
+	<br>
+	<a th:if="${ifEdit}" th:href="${'/Employee/EditLeave?leaveId='+LeaveHistory.id}">Edit</a>
+	<br>
 
-	
 
 	<table>
 		<tr>
@@ -50,6 +53,10 @@
 		<tr>
 			<td>Contract Detail</td>
 			<td th:text="${LeaveHistory.contractDetail}">Contract Detail</td>
+		</tr>
+		<tr>
+			<td>Reject Reason</td>
+			<td th:text="${LeaveHistory.rejectReason}">Reject Reason</td>
 		</tr>
 	</table>
 
