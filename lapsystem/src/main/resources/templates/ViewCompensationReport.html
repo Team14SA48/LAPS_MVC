@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compensation Claim Report</title>
+</head>
+<body>
+<h1>Select Employee</h1>
+
+<form action="#"
+		th:action="${'/viewcompensationreport'}"
+		method="post">
+	<table>	
+				
+				<tr>
+					  <td>Employee Name:</td>
+                    <td><select class="form-control" name="employeename">
+                       
+                        <option  th:each="employee:${employee}" th:value="${employee.empName}" th:text="${employee.empName}"></option>
+                    </select>
+                    </td>
+				</tr>
+				<tr>
+				<td colspan="2"><input type="submit" name="Submit" value="Submit"/></td>
+				</tr>	
+		</table>
+
+</form>
+
+<div class="compensationclaimhistory">
+    <div th:if="${not #lists.isEmpty(compensations)}">
+        <h2 align="center"> Compensation Claim Histories</h2>
+        <table class="table table-striped" border=1 align="center">
+            <tr>
+                
+                <th>Compensation Duration</th>
+                <th>Overtime Work From</th>
+                <th>Overtime Work To</th>
+                <th>Overtime Work Reason</th>
+                <th>Apply Date</th>
+                <th>Status</th>
+               
+            </tr>
+            <tr th:each="history : ${compensations}">
+                
+                <td th:text="${history.compensationDuration}">compensationDuration</td>
+                <td th:text="${history.OvertimeWorkFrom}">overTimeWorkDateFrom</td>
+                <td th:text="${history.overTimeWorkDateTo}">overTimeWorkDateTo</td>
+                <td th:text="${history.overTimeworkReason}">overTimeReason</td>
+                <td th:text="${history.applyDate}">applyDate</td>
+                <td th:text="${history.status}">Status</td> 
+ 
+                           
+            </tr>
+            <tr>
+            	<td><a th:href="${'/exportcompensationreport' }" class="btn btn-default">Export Data To File</a></td> 
+        </table>
+    </div>
+</div>
+</body>
+</html>

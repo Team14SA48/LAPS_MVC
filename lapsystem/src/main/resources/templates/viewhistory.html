@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Leave History</title>
+</head>
+<body>
+<div class="leavehistory">
+    <div th:if="${not #lists.isEmpty(leaveHistories)}">
+        <h2 align="center">All Leave Histories</h2>
+        <table class="table table-striped" border=1>
+            <tr>
+                <th>Leave Start Date</th>
+                <th>Leave End Date</th>
+                <th>Leave Days</th>
+                <th>Leave Category</th>
+                <th>Contact Detail</th>
+                <th>Reason</th>
+                <th>Work Dissemination</th>
+                <th>Status</th>
+                <th>Reject Reason</th>
+                <th>View Details</th>        
+            </tr>
+            <tr th:each="history : ${leaveHistories}">
+                <td th:text="${history.leaveStartDate}">leaveStartDate</td>
+                <td th:text="${history.leaveEndDate}">leaveEndDate</td>
+                <td th:text="${history.leaveDays}">leaveDays</td>
+                <td th:text="${history.leaveCategory.leaveCategory}">leaveCategory</td>
+                <td th:text="${history.contractDetail}">ContactDetail</td>
+                <td th:text="${history.additionalReasons}">AdditionalReasons</td>
+                <td th:text="${history.workDissemination}">work dissemination</td>
+                <td th:text="${history.status}">Status</td> 
+                <td th:text="${history.rejectReason}">RejectReason</td>   
+                <td><a th:href="${'/viewdetails/' + history.id}" class="btn btn-default">Details</a></td>             
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

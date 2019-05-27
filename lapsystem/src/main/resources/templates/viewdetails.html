@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Leave Details</title>
+</head>
+<body>
+<div class="details">
+        <h2 align="center">Leave Details</h2>
+        <table class="table table-striped" align="center" border=1 style="text-align:left" >
+            <tr>    
+                <td>Leave Start Date:</td>
+                <td th:text="${leave.leaveStartDate}">leaveStartDate</td>
+            </tr>
+            <tr>
+            	 <th>Leave End date:</th>
+            	 <td th:text="${leave.leaveEndDate}">leaveEndDate</td>
+            </tr>
+            <tr>
+            	<th>Leave Days:</th>
+                <td th:text="${leave.leaveDays}">leaveDays</td>
+            </tr>
+            <tr>
+             	<th>Leave Type:</th>
+            	<td th:text="${leave.leaveCategory.leaveCategory}">leaveCategory</td>
+            </tr>
+            <tr>
+            	<th>Reasons:</th>
+            	<td th:text="${leave.additionalReasons}">additionalReasons</td>
+            </tr>
+            <tr>
+            	<th>Contact Detail:</th>
+             	<td th:text="${leave.contractDetail}">contractDetail</td>
+            </tr>
+            <tr>
+                <th>Work Dissemination:</th>
+               	<td  th:text="${leave.workDissemination}">workDissemination</td>
+            </tr>
+            <tr>
+               	<th>Status:</th>
+                <td  th:text="${leave.status}">status</td>
+             </tr>
+             <tr>
+                 <th>Submit Date:</th>
+                <td th:text="${leave.submitDate}">submitDate</td>
+             </tr>
+             <tr>
+                <th>Reject Reason:</th>
+                <td  th:text="${leave.rejectReason}">rejectReason</td>
+              </tr>
+               
+			<tr>
+				<td th:if="${leave.status eq 'Applied'||leave.status eq 'Updated'}">	
+				<a th:href="${'/leave/edit/' + leave.id}" class="btn btn-default">Edit</a>
+				</td>
+			 	<td th:if="${leave.status eq 'Applied'||leave.status eq 'Updated'}">
+			 	<a th:href="${'/leave/delete/' + leave.id}" class="btn btn-default">Delete</a>
+			 	</td >
+             	<td th:if="${leave.status} eq 'Approved'"><a th:href="${'/leave/cancel/' + leave.id}" class="btn btn-danger">Cancel</a></td>
+			</tr>                
+               
+           
+        </table>
+    </div>
+
+</body>
+</html>

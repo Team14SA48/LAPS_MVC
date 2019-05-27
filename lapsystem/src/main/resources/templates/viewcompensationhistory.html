@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compensation Claim Report</title>
+</head>
+<body>
+<div class="Compensation">
+    <div th:if="${not #lists.isEmpty(compensationHistories)}">
+        <h2 align="center">All Compensation Histories</h2>
+        <table class="table table-striped" border=1>
+            <tr>
+                <th>Compensation Duration</th>
+                <th>Overtime Work From</th>
+                <th>Overtime Work To</th>
+                <th>Overtime Work Reason</th>
+                <th>Apply Date</th>
+                <th>Status</th>
+                <th>View Details</th>
+               
+            </tr>
+            <tr th:each="history : ${compensationHistories}">
+                 <td th:text="${history.compensationDuration}">compensationDuration</td>
+                <td th:text="${history.overTimeWorkDateFrom}">overTimeWorkDateFrom</td>
+                <td th:text="${history.overTimeWorkDateTo}">overTimeWorkDateTo</td>
+                <td th:text="${history.overTimeworkReason}">overTimeReason</td>
+                <td th:text="${history.applyDate}">applyDate</td>
+                <td th:text="${history.status}">Status</td> 
+                <td><a th:href="${'/viewcompensationdetails/' + history.id}" class="btn btn-default">Details</a></td>             
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -6,16 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import sg.edu.nus.lapsystem.model.Employee;
 
 @Entity
 public class CompensationClaimHistory {
-	
+
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private Date overTimeWorkDate;
-	private int employeeId;
-	private int compensationDuration;
+	private Date overTimeWorkDateFrom;
+	private Date overTimeWorkDateTo;
+	public Date getOverTimeWorkDateTo() {
+		return overTimeWorkDateTo;
+	}
+	public void setOverTimeWorkDateTo(Date overTimeWorkDateTo) {
+		this.overTimeWorkDateTo = overTimeWorkDateTo;
+	}
+	@ManyToOne
+	private Employee employee;
+	private double compensationDuration;
 	private String status;
 	private Date applyDate;
 	private String overTimeworkReason;
@@ -27,22 +38,17 @@ public class CompensationClaimHistory {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getOverTimeWorkDate() {
-		return overTimeWorkDate;
+	public Date getOverTimeWorkDateFrom() {
+		return overTimeWorkDateFrom;
 	}
-	public void setOverTimeWorkDate(Date overTimeWorkDate) {
-		this.overTimeWorkDate = overTimeWorkDate;
+	public void setOverTimeWorkDateFrom(Date overTimeWorkDateFrom) {
+		this.overTimeWorkDateFrom = overTimeWorkDateFrom;
 	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
-	public int getCompensationDuration() {
+	
+	public double getCompensationDuration() {
 		return compensationDuration;
 	}
-	public void setCompensationDuration(int compensationDuration) {
+	public void setCompensationDuration(double compensationDuration) {
 		this.compensationDuration = compensationDuration;
 	}
 	public String getStatus() {
@@ -72,10 +78,8 @@ public class CompensationClaimHistory {
 	
 	@Override
 	public String toString() {
-		return "CompensationClaimHistory [id=" + id + ", overTimeWorkDate=" + overTimeWorkDate + ", employeeId="
-				+ employeeId + ", compensationDuration=" + compensationDuration + ", status=" + status + ", applyDate="
+		return "CompensationClaimHistory [id=" + id + ", overTimeWorkDate=" + overTimeWorkDateFrom + ", employeeId="
+				+ employee.getId() + ", compensationDuration=" + compensationDuration + ", status=" + status + ", applyDate="
 				+ applyDate + ", overTimeworkReason=" + overTimeworkReason + "]";
 	}
-	
-	
 }

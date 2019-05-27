@@ -123,7 +123,7 @@ public class LeaveHistoryService {
 	
 	// Calculator
 
-	private LeaveHistory CalculateLeaveDays(LeaveHistory lh) {
+	public LeaveHistory CalculateLeaveDays(LeaveHistory lh) {
 		LocalDate startDate = lh.getLeaveStartDate();
 		LocalDate endDate = lh.getLeaveEndDate();
 		int leaveDays = (int) (ChronoUnit.DAYS.between(startDate, endDate) + 1);

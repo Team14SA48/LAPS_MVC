@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="#"
+		th:action="${'/viewleavebymonth'}"
+		method="post">
+<table>
+<tr><td>Select Month:</td></tr>
+<tr>
+<td>
+<select class="form-control" name="leavemonth">
+<option>Previous Month</option>
+<option>Current Month</option>
+<option>Next Month</option>
+</select>
+</td>
+</tr>
+<tr><td>Results shown per page:</td></tr>
+<tr>
+<td>
+<select class="form-control" name="resultperpage">
+<option>2</option>
+<option>5</option>
+<option>10</option>
+</select>
+</td>
+</tr>
+<tr><td><input type="hidden" name="currentpage" value="1"/></td></tr> 
+
+<tr><td><input type="submit" value="submit"/></td></tr>
+</table>
+</form>
+</body>
+</html>

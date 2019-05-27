@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Leave</title>
+</head>
+<body>
+<h1>Edit Leave</h1>
+	<form action="#"
+		th:action="${'/leave/edit/'+leave.id}"
+		th:object="${leave}" method="post">
+		<table>
+			<tbody>
+	
+			
+				<tr>
+					<td>Leave Start Date</td>
+					<td><input type="text" th:field="*{leaveStartDate}" /></td>
+					<td th:if="${#fields.hasErrors('leaveStartDate')}"
+						th:errors="*{leaveStartDate}"></td>
+				</tr>
+					<tr>
+					<td>Leave End Date</td>
+					<td><input type="text" th:field="*{leaveEndDate}" /></td>
+					<td th:if="${#fields.hasErrors('leaveEndDate')}"
+						th:errors="*{leaveEndDate}"></td>
+				</tr>
+			
+				<tr>
+					<td>Leave Days</td>
+					<td><input type="text" th:field="*{leaveDays}" /></td>
+					<td th:if="${#fields.hasErrors('leaveDays')}"
+						th:errors="*{leaveDays}"></td>
+				</tr>
+				
+				<tr>
+					<td>Additional Reason</td>
+					<td><input type="text" th:field="*{additionalReasons}" /></td>
+					<td th:if="${#fields.hasErrors('additionalReasons')}"
+						th:errors="*{additionalReasons}"></td>
+				</tr>
+				
+				<tr>
+					<td>Contact Detail</td>
+					<td><input type="text" th:field="*{contractDetail}" /></td>
+					<td th:if="${#fields.hasErrors('contractDetail')}"
+						th:errors="*{contractDetail}"></td>
+				</tr>
+				
+				<tr>
+					<td>Work Dissemination</td>
+					<td><input type="text" th:field="*{workDissemination}" /></td>
+					<td th:if="${#fields.hasErrors('workDissemination')}"
+						th:errors="*{workDissemination}"></td>
+				</tr>
+
+				<tr>
+					<td><input type="submit" value="Update" class="blcass" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+</body>
+</html>

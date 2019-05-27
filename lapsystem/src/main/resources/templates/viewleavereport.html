@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>select date</title>
+</head>
+<body>
+<h1>Select Date Period</h1>
+
+<form action="#"
+		th:action="${'/viewleavereport'}"
+		method="post">
+	<table>	
+				 <tr>
+					<td>Start Date</td>
+					<td><input type="date" name="startdate" /></td>		
+				</tr>	
+				<tr>
+					<td>End Date</td>
+					<td><input type="date" name="enddate" /></td>
+				</tr> 
+				<tr>
+					  <td>Leave Type:</td>
+                    <td><select class="form-control" name="leavetype">
+                        <option>All</option>
+                        <option  th:each="category:${leavecategory}" th:value="${category.leaveCategory}" th:text="${category.LeaveCategory }"></option>
+                    </select>
+                    </td>
+				</tr>
+				<tr>
+				<td colspan="2"><input type="submit" name="Submit" value="Submit"/></td>
+				</tr>	
+		</table>
+
+</form>
+
+<div class="leavehistory">
+    <div th:if="${not #lists.isEmpty(leavereport)}">
+        <h2 align="center"> Leave Histories</h2>
+        <table class="table table-striped" border=1 align="center">
+            <tr>
+                <th>Leave Start Date</th>
+                <th>Leave End Date</th>
+                <th>Leave Days</th>
+                <th>Leave Category</th>
+                <th>Contact Detail</th>
+                <th>Reason</th>
+                <th>Work Dissemination</th>
+                <th>Status</th>
+               
+            </tr>
+            <tr th:each="history : ${leavereport}">
+                <td th:text="${history.leaveStartDate}">leaveStartDate</td>
+                <td th:text="${history.leaveEndDate}">leaveEndDate</td>
+                <td th:text="${history.leaveDays}">leaveDays</td>
+                <td th:text="${history.leaveCategory.leaveCategory}">leaveCategory</td>
+                <td th:text="${history.contractDetail}">ContactDetail</td>
+                <td th:text="${history.additionalReasons}">AdditionalReasons</td>
+                <td th:text="${history.workDissemination}">work dissemination</td>
+                <td th:text="${history.status}">Status</td> 
+ 
+                           
+            </tr>
+            <tr>
+            	<td><a th:href="${'/exportreport' }" class="btn btn-default">Export Data To File</a></td> 
+        </table>
+    </div>
+</div>
+</body>
+</html>

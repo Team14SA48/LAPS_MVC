@@ -142,19 +142,19 @@ public class LeaveHistory {
 	}
 
 	public LeaveHistory(Employee employee, LocalDate leaveStartDate, LocalDate leaveEndDate,
-			LeaveCategory leaveCategory, String additionalReasons) {
-		this(employee, leaveStartDate, leaveEndDate, LocalDate.now(), leaveCategory, additionalReasons);
+			LeaveCategory leaveCategory, String additionalReasons,String status) {
+		this(employee, leaveStartDate, leaveEndDate, LocalDate.now(), leaveCategory, additionalReasons,status);
 	}
 
 	public LeaveHistory(Employee employee, LocalDate leaveStartDate, LocalDate leaveEndDate, LocalDate submitDate,
-			LeaveCategory leaveCategory, String additionalReasons) {
+			LeaveCategory leaveCategory, String additionalReasons, String status) {
 		this.employee = employee;
 		this.leaveStartDate = leaveStartDate;
 		this.leaveEndDate = leaveEndDate;
 		this.submitDate = submitDate;
 		this.leaveCategory = leaveCategory;
 		this.additionalReasons = additionalReasons;
-		this.status = "History Input";
+		this.status = status;
 	}
 
 	@Override

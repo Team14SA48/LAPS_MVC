@@ -10,55 +10,62 @@
 	<a th:href="@{/menu}">Menu</a>
 	<br>
 	<a href="/Employee/ApplyLeave">Apply Leave</a>
-	<br>
-	<a th:if="${ifEdit}" th:href="${'/Employee/EditLeave?leaveId='+LeaveHistory.id}">Edit</a>
-	<br>
 
+ <table class="table table-striped" align="center" border=1 style="text-align:left" >
+            <tr>    
+                <td>Leave Start Date:</td>
+                <td th:text="${leave.leaveStartDate}">leaveStartDate</td>
+            </tr>
+            <tr>
+            	 <th>Leave End date:</th>
+            	 <td th:text="${leave.leaveEndDate}">leaveEndDate</td>
+            </tr>
+            <tr>
+            	<th>Leave Days:</th>
+                <td th:text="${leave.leaveDays}">leaveDays</td>
+            </tr>
+            <tr>
+             	<th>Leave Type:</th>
+            	<td th:text="${leave.leaveCategory.leaveCategory}">leaveCategory</td>
+            </tr>
+            <tr>
+            	<th>Reasons:</th>
+            	<td th:text="${leave.additionalReasons}">additionalReasons</td>
+            </tr>
+            <tr>
+            	<th>Contact Detail:</th>
+             	<td th:text="${leave.contractDetail}">contractDetail</td>
+            </tr>
+            <tr>
+                <th>Work Dissemination:</th>
+               	<td  th:text="${leave.workDissemination}">workDissemination</td>
+            </tr>
+            <tr>
+               	<th>Status:</th>
+                <td  th:text="${leave.status}">status</td>
+             </tr>
+             <tr>
+                 <th>Submit Date:</th>
+                <td th:text="${leave.submitDate}">submitDate</td>
+             </tr>
+             <tr>
+                <th>Reject Reason:</th>
+                <td  th:text="${leave.rejectReason}">rejectReason</td>
+              </tr>
+               
+			<tr>
+				<td th:if="${leave.status eq 'Applied'||leave.status eq 'Updated'}">	
+				<a th:href="${'/Employee/EditLeave?leaveId='+leave.id}" class="btn btn-default">Edit</a>
+				</td>
+			 	<td th:if="${leave.status eq 'Applied'||leave.status eq 'Updated'}">
+			 	<a th:href="${'/Employee/DeleteLeave?leaveId='+leave.id}" class="btn btn-default">Delete</a>
+			 	</td >
+             	<td th:if="${leave.status} eq 'Approved'"><a th:href="${'/Employee/CancelLeave?leaveId='+leave.id}" class="btn btn-danger">Cancel</a></td>
+			</tr>                
+               
+           
+        </table>
 
-	<table>
-		<tr>
-			<td>Leave id</td>
-			<td>employee</td>
-			<td>leaveCategory</td>
-			<td>status</td>
-			<td>leaveStartDate</td>
-			<td>leaveEndDate</td>
-			<td>leaveDays</td>
-			<td>submitDate</td>
-
-		</tr>
-		<tr>
-			<td th:text="${LeaveHistory.id}">id</td>
-			<td th:text="${LeaveHistory.employee.name}">employee</td>
-			<td th:text="${LeaveHistory.leaveCategory.leaveCategory}">leaveCategory</td>
-			<td th:text="${LeaveHistory.status}">status</td>
-			<td th:text="${LeaveHistory.leaveStartDate}">leaveStartDate</td>
-			<td th:text="${LeaveHistory.leaveEndDate}">leaveEndDat</td>
-			<td th:text="${LeaveHistory.leaveDays}">leaveDays</td>
-			<td th:text="${LeaveHistory.submitDate}">submitDate</td>
-		</tr>
-	</table>
-
-	<table>
-		<tr>
-			<td>Additional Reason</td>
-			<td th:text="${LeaveHistory.additionalReasons}">Additional
-				Reason</td>
-		</tr>
-		<tr>
-			<td>Work Dissemination</td>
-			<td th:text="${LeaveHistory.workDissemination}">Work
-				Dissemination</td>
-		</tr>
-		<tr>
-			<td>Contract Detail</td>
-			<td th:text="${LeaveHistory.contractDetail}">Contract Detail</td>
-		</tr>
-		<tr>
-			<td>Reject Reason</td>
-			<td th:text="${LeaveHistory.rejectReason}">Reject Reason</td>
-		</tr>
-	</table>
-
+	
 </body>
 </html>

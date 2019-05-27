@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import sg.edu.nus.lapsystem.model.CompensationClaimHistory;
+
 @Entity
 public class Employee {
 	
@@ -39,13 +41,21 @@ public class Employee {
 	private String password;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
 	private Set<LeaveHistory> LeaveHistories = new HashSet<LeaveHistory>();
-	
+	@OneToMany(mappedBy = "employee")
+	private Set<CompensationClaimHistory> CompensationClaimHistories = new HashSet<CompensationClaimHistory>();
 
 	// Constant
 
 	private final static int MEDICAL_LEAVEDAYS = 60;
 
 	// getter setter
+	public Set<CompensationClaimHistory> getCompensationClaimHistories() {
+		return CompensationClaimHistories;
+	}
+
+	public void setCompensationClaimHistories(Set<CompensationClaimHistory> compensationClaimHistories) {
+		CompensationClaimHistories = compensationClaimHistories;
+	}
 
 	public int getId() {
 		return id;

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Compensation Details</title>
+</head>
+<body>
+<div class="compensationdetails">
+        <h2 align="center">Compensation Details</h2>
+        <table class="table table-striped" align="center" border=1 style="text-align:left" >
+            <tr>    
+                <td>Compensation Duration:</td>
+                <td th:text="${compensation.compensationDuration}">compensationDuration</td>
+            </tr>
+            <tr>
+            	 <th>Overtime Work From:</th>
+            	 <td th:text="${compensation.overTimeWorkDateFrom}">Overtime Work From</td>
+            </tr>
+            <tr>
+            	<th>Overtime Work To:</th>
+                <td th:text="${compensation.overTimeWorkDateTo}">overTimeWorkDateTo</td>
+            </tr>
+            <tr>
+             	<th>Overtime Work Reason:</th>
+            	<td th:text="${compensation.overTimeworkReason}">overTimeworkReason</td>
+            </tr>
+            <tr>
+            	<th>Apply Date:</th>
+            	<td th:text="${compensation.applyDate}">applyDate</td>
+            </tr>
+     
+            <tr>
+               	<th>Status:</th>
+                <td  th:text="${compensation.status}">status</td>
+             </tr>
+          
+               
+			<tr>
+				<td th:if="${compensation.status eq 'Applied'||compensation.status eq 'Updated'}">	
+				<a th:href="${'/compensation/edit/' + compensation.id}" class="btn btn-default">Edit</a>
+				</td>
+			 	<td th:if="${compensation.status eq 'Applied'||compensation.status eq 'Updated'}">
+			 	<a th:href="${'/compensation/delete/' + compensation.id}" class="btn btn-default">Delete</a>
+              
+               
+           
+        </table>
+    </div>
+
+</body>
+</html>

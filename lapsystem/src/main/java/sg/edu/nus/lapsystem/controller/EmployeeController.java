@@ -132,7 +132,7 @@ public class EmployeeController {
 	@RequestMapping(path = "LeaveDetail")
 	public String showLeaveRequestDetail(@CookieValue("userId") int userId, @RequestParam int leaveId, Model model) {
 		LeaveHistory lh = lhs.findLeaveHistoryById(leaveId);
-		model.addAttribute("LeaveHistory",lh );
+		model.addAttribute("leave",lh );
 		
 		boolean ifEdit = lh.getStatus().equals("Applied")||lh.getStatus().equals("Updated");
 		model.addAttribute("ifEdit", ifEdit);

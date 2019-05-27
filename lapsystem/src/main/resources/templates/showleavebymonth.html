@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 align="center">Leave List</h1>
+<div th:if="${not #lists.isEmpty(leaves)}">
+<table border=1 align="center">
+<tr>
+	<th>Leave Id</th>
+	<th>Employee Id</th>
+	<th>Employee Name</th>
+ 	<th>Leave Start Date</th>
+    <th>Leave End Date</th>
+    <th>Leave Days</th>
+    <th>Leave Category</th>
+</tr>
+<tr th:each="leave : ${leaves}">
+	<td th:text="${leave.id}">Employee Id</td>
+	<td th:text="${leave.Employee.id}">Employee Id</td>
+	<td th:text="${leave.Employee.name}">Employee Name</td>
+	<td th:text="${leave.leaveStartDate}">leaveStartDate</td>
+	<td th:text="${leave.leaveEndDate}">leaveEndDate</td>
+	<td th:text="${leave.leaveDays}">Leave Days</td>
+	<td th:text="${leave.leaveCategory.leaveCategory}">Leave Category</td>
+</tr>
+
+</table>
+</div>
+<div class="paging">
+<table align="center">
+<tr>
+<td th:each="i:${#numbers.sequence(1,length)}"><a th:href="${'showleavebymonth?page=' + i}"><span th:text="${i}"></span></a></td>
+
+</tr>
+
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Compensation</title>
+</head>
+<body>
+<h1>Edit Compensation</h1>
+	<form action="#"
+		th:action="${'/compensation/edit/'+comId}"
+		th:object="${compensation}" method="post">
+		<table>
+			<tbody>
+
+				<tr>
+					<td>Compensation Duration</td>
+					<td><input type="text" th:field="*{compensationDuration}" /></td>
+					<td th:if="${#fields.hasErrors('compensationDuration')}"
+						th:errors="*{compensationDuration}"></td>
+				</tr>
+					<tr>
+					<td>Overtime Work From</td>
+					<td><input type="text" th:field="*{overTimeWorkDateFrom}" /></td>
+					<td th:if="${#fields.hasErrors('overTimeWorkDateFrom')}"
+						th:errors="*{overTimeWorkDateFrom}"></td>
+				</tr>
+			
+				<tr>
+					<td>Overtime Work To</td>
+					<td><input type="text" th:field="*{overTimeWorkDateTo}" /></td>
+					<td th:if="${#fields.hasErrors('overTimeWorkDateTo')}"
+						th:errors="*{overTimeWorkDateTo}"></td>
+				</tr>
+				
+				<tr>
+					<td>Overtime Work Reason</td>
+					<td><input type="text" th:field="*{overTimeworkReason}" /></td>
+					<td th:if="${#fields.hasErrors('overTimeworkReason')}"
+						th:errors="*{overTimeworkReason}"></td>
+				</tr>
+
+				<tr>
+					<td><input type="submit" value="Update" class="blcass" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+</body>
+</html>
