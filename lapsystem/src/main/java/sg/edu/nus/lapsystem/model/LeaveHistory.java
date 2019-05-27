@@ -75,7 +75,6 @@ public class LeaveHistory {
 		return leaveDays;
 	}
 
-	// only service class can use this
 	public void setLeaveDays(int leaveDays) {
 		this.leaveDays = leaveDays;
 	}
@@ -84,7 +83,6 @@ public class LeaveHistory {
 		return submitDate;
 	}
 
-	// only service class can change this
 	public void setSubmitDate(LocalDate submitDate) {
 		this.submitDate = submitDate;
 	}
@@ -126,30 +124,8 @@ public class LeaveHistory {
 	}
 
 	// status transition
-	public void setStatus(String status) throws IllegalArgumentException {
-		if (this.status == null) {
-			if (status.equals("Applied"))
-				this.status = "Applied";
-			else
-				throw new IllegalArgumentException("Invalid transition status");
-		} else if (this.status.equals("Applied") || this.status.equals("Updated")) {
-			if (status.equals("Updated"))
-				this.status = "Updated";
-			else if (status.equals("Deleted"))
-				this.status = "Deleted";
-			else if (status.equals("Approved"))
-				this.status = "Approved";
-			else if (status.equals("Rejected"))
-				this.status = "Rejected";
-			else
-				throw new IllegalArgumentException("Invalid transition status");
-		} else if (this.status.equals("Approved")) {
-			if (status.equals("Cancel"))
-				this.status = "Cancel";
-			else
-				throw new IllegalArgumentException("Invalid transition status");
-		} else
-			throw new IllegalArgumentException("Invalid transition status");
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getRejectReason() {

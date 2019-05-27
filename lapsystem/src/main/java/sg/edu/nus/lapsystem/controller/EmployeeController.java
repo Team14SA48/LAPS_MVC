@@ -1,6 +1,7 @@
 package sg.edu.nus.lapsystem.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.validation.Valid;
 
@@ -59,16 +60,21 @@ public class EmployeeController {
 	@RequestMapping(path = "EditSubmit")
 	public String EditSubmit(@ModelAttribute @Valid LeaveHistory leaveform, BindingResult bindingResult,
 			@RequestParam boolean ifOverseas, @CookieValue("userId") int userId, Model model) {
-
+		
 		leaveform.setEmployee(es.findById(userId));
+		LeaveHistory oldRecord = lhs.findLeaveHistoryById(leaveform.getId());
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		LocalDate oldStartDate = LocalDate.parse(oldRecord.getLeaveStartDate().toString(), formatter);
+		LocalDate oldEndDate = LocalDate.parse(oldRecord.getLeaveEndDate().toString(), formatter);
+
 		
 		try {
 			// additional validation here
 			if (ifOverseas && leaveform.getContractDetail().equals(""))
 				throw new IllegalArgumentException("Please input Contract Detail when going overseas");
 
-			
-			
 			lhs.update(leaveform);
 			
 			model.addAttribute("leaveForm", new LeaveHistory());
@@ -79,12 +85,15 @@ public class EmployeeController {
 		} catch (IllegalArgumentException iae) {
 			System.out.println(iae.getMessage());
 			
-			model.addAttribute("ErrorMessage", iae.getMessage());
-			model.addAttribute("leaveForm", leaveform);
-			model.addAttribute("HistoryLeaveList", lhs.findByEmployeeId(userId));
-			model.addAttribute("User", es.findById(userId));
+			oldRecord.setEmployee(es.findById(userId));
+			oldRecord.setLeaveStartDate(oldStartDate);
+			oldRecord.setLeaveEndDate(oldEndDate);
+
+			oldRecord = lhs.CompleteAndValidateForm(oldRecord);
+			lhs.save(oldRecord);
 			
-			return "editLeaveForm";
+			
+			return "redirect:/Employee/EditLeave?leaveId="+(leaveform.getId()+1);
 		}
 		
 		

@@ -113,10 +113,9 @@ public class LeaveHistoryService {
 			lh.getEmployee().setAnnualLeaveDaysLeft(lh.getEmployee().getAnnualLeaveDaysLeft()+leaveDays);
 		if(leaveCategory.equals("Medical Leave"))
 			lh.getEmployee().setMedicalLeaveDaysLeft(lh.getEmployee().getMedicalLeaveDaysLeft()+leaveDays);
-	
+		es.save(lh.getEmployee());
+		
 		LeaveHistory leave = CompleteAndValidateForm(lh);
-		leave.setStatus("Applied");
-		leave.setStatus("Updated");
 		lhr.saveAndFlush(lh);
 	}
 	
