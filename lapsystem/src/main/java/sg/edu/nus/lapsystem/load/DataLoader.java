@@ -158,36 +158,56 @@ public class DataLoader implements CommandLineRunner {
 		LocalDate ld8 = LocalDate.of(2019, 3, 6);
 		LocalDate ld9 = LocalDate.of(2019, 3, 8);
 		LocalDate ld10 = LocalDate.of(2019, 3, 11);
-		
+		LocalDate ld11 = LocalDate.of(2019, 4, 1);
+		LocalDate ld12 = LocalDate.of(2019, 4, 2);
+		LocalDate ld13 = LocalDate.of(2019, 4, 3);
+		LocalDate ld14 = LocalDate.of(2019, 4, 4);
+		LocalDate ld15 = LocalDate.of(2019, 6, 3);
+		LocalDate ld16 = LocalDate.of(2019, 6, 4);
+		LocalDate ld17 = LocalDate.of(2019, 6, 6);
+		LocalDate ld18 = LocalDate.of(2019, 6, 7);
 
-		LeaveHistory lh1 = new LeaveHistory(e1, ld1, ld2, lc1, "I am getting married!!!");
+
+		
+		
+		// this has to change
+
+		LeaveHistory lh1 = new LeaveHistory(e1, ld1, ld2, lc1, "I am getting married!!!","Applied");
 		lh1 = lhs.InputData(lh1);
-		LeaveHistory lh2 = new LeaveHistory(e1, ld1, ld3, lc2, "I need moretime to chat with my little sises");
+		LeaveHistory lh2 = new LeaveHistory(e1, ld1, ld3, lc2, "I am getting married!!!","Applied");
 		lh2 = lhs.InputData(lh2);
-		LeaveHistory lh3 = new LeaveHistory(e2, ld7, ld8, lc1, "zzz...");
+		LeaveHistory lh3 = new LeaveHistory(e2, ld7, ld8, lc1, "zzz...","Updated");
 		lh3 = lhs.InputData(lh3);
-		LeaveHistory lh4 = new LeaveHistory(e2, ld1, ld5, lc1, "HoneyMoon!!!");
+		LeaveHistory lh4 = new LeaveHistory(e2, ld1, ld5, lc1, "HoneyMoon!!!","Updated");
 		lh4 = lhs.InputData(lh4);
-		LeaveHistory lh5 = new LeaveHistory(e3, ld2, ld4, lc2, "see brother!!!");
+		LeaveHistory lh5 = new LeaveHistory(e3, ld2, ld4, lc2, "see brother!!!","Applied");
 		lh5 = lhs.InputData(lh5);
-		LeaveHistory lh6 = new LeaveHistory(e3, ld9, ld10, lc2, "have cold!!!");
+		LeaveHistory lh6 = new LeaveHistory(e3, ld9, ld10, lc2, "have cold!!!","Rejected");
 		lh6 = lhs.InputData(lh6);
-		LeaveHistory lh7 = new LeaveHistory(e4, ld7, ld9, lc1, "deal something!!!");
+		LeaveHistory lh7 = new LeaveHistory(e4, ld7, ld9, lc1, "deal something!!!","Updated");
 		lh7 = lhs.InputData(lh7);
-		LeaveHistory lh8 = new LeaveHistory(e4, ld7, ld8, lc1, "go to school!!!");
+		LeaveHistory lh8 = new LeaveHistory(e4, ld7, ld8, lc1, "go to school!!!","Rejected");
 		lh8 = lhs.InputData(lh8);
-		LeaveHistory lh9 = new LeaveHistory(e5, ld2, ld5, lc2, "have headache!!!");
+		LeaveHistory lh9 = new LeaveHistory(e5, ld2, ld5, lc2, "have headache!!!","Applied");
 		lh9 = lhs.InputData(lh9);
-		LeaveHistory lh10 = new LeaveHistory(e5, ld1, ld5, lc2, "go to hospital!!!");
+		LeaveHistory lh10 = new LeaveHistory(e5, ld1, ld5, lc2, "go to hospital!!!","Cancelled");
 		lh10 = lhs.InputData(lh10);
-		LeaveHistory lh11 = new LeaveHistory(e6, ld9, ld10, lc1, "go to zoo!!!");
+		LeaveHistory lh11 = new LeaveHistory(e6, ld9, ld10, lc1, "I need moretime to chat with my little sises","Cancelled");
 		lh11 = lhs.InputData(lh11);
-		LeaveHistory lh12 = new LeaveHistory(e6, ld1, ld6, lc2, "see parents!!!");
+		LeaveHistory lh12 = new LeaveHistory(e6, ld1, ld6, lc2, "I need moretime to chat with my little sises","Rejected");
 		lh12 = lhs.InputData(lh12);
-		LeaveHistory lh13 = new LeaveHistory(e7, ld8, ld10, lc2, "to relax!!!");
+		LeaveHistory lh13 = new LeaveHistory(e7, ld8, ld10, lc2, "to relax!!!","Cancelled");
 		lh13 = lhs.InputData(lh13);
-		LeaveHistory lh14 = new LeaveHistory(e7, ld7, ld10, lc2, "too much pressure!!!");
+		LeaveHistory lh14 = new LeaveHistory(e7, ld7, ld10, lc2, "too much pressure!!!","Rejected");
 		lh14 = lhs.InputData(lh14);
+		LeaveHistory lh15 = new LeaveHistory(e6, ld11, ld12, lc2, "LITTLE SIS MISSING ME!!!","Applied");
+		lh15 = lhs.InputData(lh15);
+		LeaveHistory lh16 = new LeaveHistory(e6, ld13, ld14, lc2, "LITTLE SIS MISSING ME!!!","Applied");
+		lh16 = lhs.InputData(lh16);
+		LeaveHistory lh17 = new LeaveHistory(e6, ld15, ld16, lc2, "LITTLE SIS MISSING ME!!!","Applied");
+		lh17 = lhs.InputData(lh17);
+		LeaveHistory lh18 = new LeaveHistory(e6, ld17, ld18, lc2, "LITTLE SIS MISSING ME!!!","Applied");
+		lh18 = lhs.InputData(lh18);
 
 		List<LeaveHistory> lhList = new ArrayList<LeaveHistory>();
 		lhList.add(lh1);
@@ -204,7 +224,11 @@ public class DataLoader implements CommandLineRunner {
 		lhList.add(lh12);
 		lhList.add(lh13);
 		lhList.add(lh14);
-
+		lhList.add(lh15);
+		lhList.add(lh16);
+		lhList.add(lh17);
+		lhList.add(lh18);
+		
 		for (LeaveHistory lh : lhList) {
 			lhs.save(lh);
 			LOG.info(lh.toString());
