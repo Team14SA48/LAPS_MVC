@@ -3,20 +3,23 @@ package sg.edu.nus.lapsystem.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class Position {
 
 	@Id
-	@Column(length = 30)
+	@Column(length = 30, name = "positionName", unique = true, nullable = false)
 	private String positionName;
 	@Column(nullable = false)
 	private int annualLeaveDays;
-	@OneToMany(mappedBy = "position")
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY, mappedBy="position")
 	private Set<Employee> employees = new HashSet<Employee>();
 
 	// getter setter

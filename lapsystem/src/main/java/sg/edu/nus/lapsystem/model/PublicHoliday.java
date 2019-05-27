@@ -7,9 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class PublicHoliday {
 	@Id
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	@Column(nullable = false, length = 30)
 	private String holidayName;

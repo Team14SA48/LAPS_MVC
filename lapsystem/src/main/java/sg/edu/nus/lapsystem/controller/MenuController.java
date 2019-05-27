@@ -25,7 +25,11 @@ public class MenuController {
 		model.addAttribute("LeaveHistory", lhs.findByEmployeeId(userId));
 		
 		boolean ifApproveLeave = es.findById(userId).getRole().equals("manager");
+		boolean ifAdmin = es.findById(userId).getRole().equals("Administrator");
+
 		model.addAttribute("ifApproveLeave",ifApproveLeave);
+		model.addAttribute("ifAdmin",ifAdmin);
+
 
 		return "menu";
 	}

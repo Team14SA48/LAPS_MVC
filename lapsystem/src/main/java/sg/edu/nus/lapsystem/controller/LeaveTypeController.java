@@ -14,7 +14,8 @@ import sg.edu.nus.lapsystem.model.Position;
 import sg.edu.nus.lapsystem.repository.PositionRepository;
 
 @Controller
-public class MaintainLeaveTypeController {
+@RequestMapping(path="LeaveType")
+public class LeaveTypeController {
 	
 	private PositionRepository leaveTypeRepository;
 	
@@ -22,25 +23,20 @@ public class MaintainLeaveTypeController {
 	public void setLeaveTypeRepository(PositionRepository leaveTypeRepository) {
 		this.leaveTypeRepository = leaveTypeRepository;
 	}
-	
-	@RequestMapping(path = "/needchange")
-    public String index() {
-        return "index";
-    }
 
     @RequestMapping(path = "/leavetypes/add", method = RequestMethod.GET)
     public String createLeaveType(Model model) {
         model.addAttribute("leavetype", new Position());
-        return "edit";
+        return "createLeaveType";
     }
 
     @RequestMapping(path = "leavetypes", method = RequestMethod.POST)
     public String saveLeaveType(@Valid Position leavetype, BindingResult bindingResult) {
     	if (bindingResult.hasErrors()) {
-    		return "edit";
+    		return "createLeaveType";
     	}
     	leaveTypeRepository.save(leavetype);
-        return "redirect:/leavetypes";
+        return "redirect:/LeaveType/leavetypes";
     }
     
 
@@ -61,7 +57,7 @@ public class MaintainLeaveTypeController {
     @RequestMapping(path = "/leavetypes/delete/{positionName}", method = RequestMethod.GET)
     public String deleteProduct(@PathVariable(name = "positionName") String positionName) {
     	leaveTypeRepository.delete(leaveTypeRepository.findById(positionName).orElse(null));
-        return "redirect:/leavetypes";
+        return "redirect:/LeaveType/leavetypes";
     }
 	
 	

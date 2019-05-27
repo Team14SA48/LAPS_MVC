@@ -10,6 +10,9 @@
 <a href="/logout">Log Out</a><br>
 <a href="/Employee/ApplyLeave">Apply Leave</a><br>
 <a th:if="${ifApproveLeave}" href="/Manager/ListLeaveRequests">Leave Requests</a><br>
+<a th:if="${ifAdmin}" href="/LeaveType/leavetypes">Leave Type</a><br>
+<a th:if="${ifAdmin}" href="/publicholidays">Public Holidays</a><br>
+
 
 
 <p th:text="${'User Id: ' + User.id}"></p>

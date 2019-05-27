@@ -3,40 +3,43 @@ package sg.edu.nus.lapsystem.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import org.hibernate.validator.constraints.ISBN;
 
 @Entity
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(nullable = false, length = 30)
 	private String name;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="positionName", nullable=false)
 	private Position position;
 	@ManyToOne
 	private Employee supervisor;
-	@OneToMany(mappedBy = "supervisor")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor")
 	private Set<Employee> subordinates = new HashSet<Employee>();
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private int annualLeaveDaysLeft;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private int medicalLeaveDaysLeft;
 	@Column(nullable = false, length = 30)
 	private String role;
 	@Column(nullable = false, length = 30)
 	private String password;
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
 	private Set<LeaveHistory> LeaveHistories = new HashSet<LeaveHistory>();
+	
 
 	// Constant
 
